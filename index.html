@@ -2,6 +2,7 @@
 
     <head>
         <title> Destination Unknown </title>
+        <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
         <script
         src="https://code.jquery.com/jquery-3.6.1.js"
@@ -10,25 +11,26 @@
     </head>
     <body>
         <div class="wrapper">
+            <div class="containerForm">
+                <form id="frm1" class="userInput" action="/action_page.php">
+                    Location: <input type="text" name="Location" id="travelLocation"><br>
+                    Month: <input type="text" name="Month" id="travelMonth"><br><br>
+                    <input id="submitBtn" type="button" onclick="getData()" value="Submit">
+                    <input id="resetBtn" class="hidden" type="button" onclick="window.location.reload()" value="Reset">
+                </form>
 
-            <form id="frm1" class="userInput" action="/action_page.php">
-                Location: <input type="text" name="Location" id="travelLocation"><br>
-                Month: <input type="text" name="Month" id="travelMonth"><br><br>
-                <input id="submitBtn" type="button" onclick="getData()" value="Submit">
-                <input id="resetBtn" class="hidden" type="button" onclick="window.location.reload()" value="Reset">
-                <input id="testBtn" type="button" onclick="testData()" value="Test">
-            </form>
-
-            <div class="containerLocation">
-            <!-- html tags and content is added here directly through the jquery -->
+                <div class="containerLocation">
+                <!-- html tags and content is added here directly through the jquery -->
+                </div>
             </div>
+        </div>
 
             <div class="containerPhotos">
                 <!-- html tags and content is added here directly through the jquery -->
             </div>
 
-        </div>
-
+      
+        
         <script src="script.js"></script>
 
     </body>

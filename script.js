@@ -144,3 +144,6 @@ function findSeasonSouth() {
     else {
         console.log("There was an issue with function findSeasonSouth ")}
     }
+
+
+    
