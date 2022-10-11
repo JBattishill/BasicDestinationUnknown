@@ -12,18 +12,27 @@ var searchQuery = "";
 function getPhotos(){    
     $(document).ready(function () {
         
-        var url = 'https://www.googleapis.com/customsearch/v1?key=' + imageKey + '&cx=' + imageSearchID + '&q=' + searchQuery;
+        var url = 'https://www.googleapis.com/customsearch/v1?searchType=image&key=' + imageKey + '&cx=' + imageSearchID + '&q=' + searchQuery;
         console.log(url)
 
         $.getJSON(url, function (apiData) {
-        var item = apiData;
 
-        $('.containerPhotos').append(item);
 
-        });
+        // seems to be creating imgtest tag, not appending into container correctly
+
+          for (var i = 0; i < apiData.items.length; i++) {
+            var item = apiData.items[i];
+
+                    var imgSrc = item.link;
+                    var imgAlt = item.title;
+            // Make sure HTML in item.htmlTitle is escaped.
+            var imgtest = $('<img class = "searchImage" src= "' + imgSrc + '" alt="'+ imgAlt +'">').html()
+            console.log(imgtest)
+            $('.containerPhotos').append(imgtest)
+          }
+         });
     });
 }
-
 
 
 function getData(){    
@@ -76,7 +85,8 @@ function getData(){
         document.getElementById("resetBtn").classList.remove('hidden');
 
         // Set search query
-        searchQuery = userLocation + travelSeason
+        searchQuery = (userLocation + travelSeason)
+        console.log(searchQuery)
 
         // calling function to getPhotos
         getPhotos()
@@ -100,19 +110,15 @@ function findSeasonNorth() {
     var userMonth = document.getElementById('travelMonth').value.toLowerCase()
 
     if (northWinter.includes(userMonth)){
-        console.log('Winter')
         travelSeason = "Winter"}
 
     else if (northSpring.includes(userMonth)){
-        console.log('Spring')
         travelSeason = "Spring"}
 
     else if (northSummer.includes(userMonth)){
-        console.log('Summer')
         travelSeason = "Summer"}
 
     else if (northAutumn.includes(userMonth)){
-        console.log('Autumn')
         travelSeason = "Autumn"}
 
     else {console.log("There was an issue with function findSeasonNorth ")}
@@ -122,19 +128,15 @@ function findSeasonSouth() {
     var userMonth = document.getElementById('travelMonth').value.toLowerCase()
 
     if (southWinter.includes(userMonth)){
-    console.log('Winter')
     travelSeason = "Winter"}
    
     else if (southSpring.includes(userMonth)){
-    console.log('Spring');
     travelSeason = "Spring"}
 
     else if (southSummer.includes(userMonth)){
-        console.log('Summer');
         travelSeason = "Summer"}   
 
     else if (southAutumn.includes(userMonth)){
-        console.log('Autumn');
         travelSeason = "Autumn"}
 
     else {
