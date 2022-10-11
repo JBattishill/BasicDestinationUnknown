@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 var key = "234979e2ff9e423095e4b2c869c1c97b"
 
-var objectid = '14693';
+var query = '';
 
 // API call
 
@@ -42,16 +42,18 @@ console.log(apiData);
 
 var item = apiData.results[0];
 
-//variable to make it easier to refer to the data from the API
+//variables to make it easier to target relevant data from the API
 var storeCity = item.city;
 var storeCountry = item.country;
 var storeLatt = item.lat
 var storeLong = item.lon
 
-console.log(storeCity);
-console.log(storeCountry);
-console.log(storeLatt);
-console.log(storeLong);
+var hemisphere = ""
+
+if (storeLong > 0)
+hemisphere = "north"
+else 
+hemisphere = "south"
 
 // // Append the content to the page
 
@@ -62,9 +64,10 @@ console.log(storeLong);
 var city = $('<h1>').html('City: ' + storeCity);
 var country = $('<h2>').html('Country: ' + storeCountry);
 var latt = $('<h3>').html('Lattitude: ' + storeLatt);
-var long = $('<h4>').html('Longitude: ' + storeLong);
+var long = $('<h3>').html('Longitude: ' + storeLong);
+var hemi = $('<h3>').html('Hemisphere: ' + hemisphere);
 
-$('.container-1').append(city,country,latt,long);
+$('.container-1').append(city,country,latt,long,hemi);
 
 // // Option 2
 
