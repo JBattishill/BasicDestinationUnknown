@@ -1,0 +1,97 @@
+<html>
+
+    <head>
+        <title> Destination Unknown </title>
+        <link rel="stylesheet" href="style.css">
+        <script
+        src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+    </head>
+<body>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+// API to HTML 1
+
+// Accessing an API and returning data
+
+// need NMA API key
+
+// https://www.nma.gov.au/about/our-collection/our-apis
+
+// docs: https://github.com/NationalMuseumAustralia/Collection-API/wiki/Getting-started
+
+// my api key
+
+var key = "234979e2ff9e423095e4b2c869c1c97b"
+
+var objectid = '14693';
+
+// API call
+
+var url = 'https://api.geoapify.com/v1/geocode/search?text=london&limit=1&format=json&apiKey=' + key;
+
+$.getJSON(url, function (apiData) {
+
+console.log('im here');
+
+console.log(apiData);
+
+var item = apiData.results[0];
+
+//variable to make it easier to refer to the data from the API
+var storeCity = item.city;
+var storeCountry = item.country;
+var storeLatt = item.lat
+var storeLong = item.lon
+
+console.log(storeCity);
+console.log(storeCountry);
+console.log(storeLatt);
+console.log(storeLong);
+
+// // Append the content to the page
+
+// // Option 1
+
+// // create a variable for the title, make it a h2 and add the text
+
+var city = $('<h1>').html('City: ' + storeCity);
+var country = $('<h2>').html('Country: ' + storeCountry);
+var latt = $('<h3>').html('Lattitude: ' + storeLatt);
+var long = $('<h4>').html('Longitude: ' + storeLong);
+
+$('.container-1').append(city,country,latt,long);
+
+// // Option 2
+
+// $('.physdesc').html(item.physicalDescription);
+
+ });
+
+ });
+
+</script>
+
+<div class="container-1">
+
+<!-- html tags and content is added here directly through the jquery -->
+
+</div>
+
+<div class="container-2">
+
+<!-- most of the html is here, content is added when loaded from api -->
+
+<h2>Physical description</h2>
+
+<p class="physdesc"></p>
+
+</div>
+
+</body>
+
+</html>
