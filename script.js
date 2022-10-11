@@ -7,37 +7,90 @@ var hemisphere = "";
 var travelSeason = "";
 var seasonTest = "";
 
-var seasonsNorthHemi =[
-    ['Winter' ['December', 'January', 'February']],
-    ['Spring' ['March', 'April', 'May']],
-    ['Summer' ['June', 'July', 'August']],
-    ['Autumn' ['September', 'October', 'November']]
-];
+// Season Variables
+const northWinter = ['December', 'January', 'February']
+const northSpring = ['March', 'April', 'May']
+const northSummer = ['June', 'July', 'August']
+const northAutumn = ['September', 'October', 'November']
 
-var seasonsSouthHemi =[
-    ['Summer' ['December', 'January', 'February']],
-    ['Autumn' ['March', 'April', 'May']],
-    ['Winter' ['June', 'July', 'August']],
-    ['Spring' ['September', 'October', 'November']]
-];
+const southSummer = ['December', 'January', 'February']
+const southAutumn = ['March', 'April', 'May']
+const southWinter = ['June', 'July', 'August']
+const southSpring = ['September', 'October', 'November']
 
-function testSeason(){
-    var userMonth = document.getElementById('travelMonth').value;
+
+// function testSeason(){
+//     var userMonth = document.getElementById('travelMonth').value;
     
-    if (seasonTest == seasonsNorthHemi)
-    for (i in seasonsNorthHemi){
-    console.log([i])
-    console.log("North")
+//     if (seasonTest == seasonsNorthHemi)
+//     for (i in seasonsNorthHemi){
+//     console.log([i])
+//     console.log("North")
+//     }
+
+//     else 
+//     for (i in seasonsSouthHemi){
+//     console.log([i])
+//     console.log("South")
+//     }
+    
+//     $('.containerSeason').append(userMonth,travelSeason);
+
+// }
+
+function findSeasonNorth() {
+    var userMonth = document.getElementById('travelMonth').value
+
+    if (northWinter.includes(userMonth)){
+        console.log('Winter')
+        travelSeason = "Winter"
+    }
+   
+    else if (northSpring.includes(userMonth)){
+        console.log('Spring')
+        travelSeason = "Spring"
     }
 
-    else 
-    for (i in seasonsSouthHemi){
-    console.log([i])
-    console.log("South")
+    else if (northSummer.includes(userMonth)){
+        console.log('Summer')
+        travelSeason = "Summer"
     }
-    
-    $('.containerSeason').append(userMonth,travelSeason);
 
+
+    else if (northAutumn.includes(userMonth)){
+        console.log('Autumn')
+        travelSeason = "Autumn"
+    }
+
+    else {console.log("There was an issue with function findSeasonNorth ")}
+}
+
+function findSeasonSouth() {
+    var userMonth = document.getElementById('travelMonth').value
+
+    if (southWinter.includes(userMonth)){
+    console.log('Winter')
+    travelSeason = "Winter"
+    }
+   
+    else if (southSpring.includes(userMonth)){
+    console.log('Spring');
+    travelSeason = "Spring"
+    }
+
+    else if (southSummer.includes(userMonth)){
+        console.log('Summer');
+        travelSeason = "Summer"
+    }   
+
+    else if (southAutumn.includes(userMonth)){
+        console.log('Autumn');
+        travelSeason = "Autumn"
+    }
+
+    else {
+        console.log("There was an issue with function findSeasonSouth ")
+    }
 }
 
 function getData(){    
@@ -61,14 +114,17 @@ function getData(){
         var storeLong = item.lon
         var userMonth = travelMonth;
         
-        // Testing if Lattitude is above or below the Equator
-        if (storeLatt > 0)
+        // Testing if Lattitude is above or below the Equator and calling season finder
+        if (storeLatt > 0) {
         hemisphere = "North",
-        seasonTest = "seasonsNorthHemi"
-        else 
-        hemisphere = "South"
-        seasonTest = "seasonsSouthHemi"
-        
+        findSeasonNorth();
+        }
+
+        else {
+        hemisphere = "South",
+        findSeasonSouth();
+         }
+
      // // Appending Content to the page
         // // create a variable for the title, make it a h2 and add the text
         var userMonth = document.getElementById('travelMonth').value;
