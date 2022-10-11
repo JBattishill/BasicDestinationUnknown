@@ -9,7 +9,7 @@
     background-color: rgb(255, 187, 179);
     color: darkslategrey;
 }
-.containerSeason{
+.containerPhotos{
     margin-top: 2vh;
     padding: 30px;
     background-color: rgb(179, 226, 255);
@@ -18,4 +18,8 @@
 
 .hidden{
     display: none;
+}
+
+.capMonth{
+text-transform: capitalize;
 }

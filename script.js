@@ -1,10 +1,30 @@
-// Variable to hold geoAPI Key
+// Variable to hold Keys
 var geoKey = "234979e2ff9e423095e4b2c869c1c97b";
+var imageKey = "AIzaSyDpsLn14cZzKJi0o0lQhMmwplnjl5wLN74"
+var imageSearchID = '474f1fff433d047cf'
 
 // Variables for future data
 var userLocation = "";
 var hemisphere = "";
 var travelSeason = "";
+var searchQuery = "";
+
+function getPhotos(){    
+    $(document).ready(function () {
+        
+        var url = 'https://www.googleapis.com/customsearch/v1?key=' + imageKey + '&cx=' + imageSearchID + '&q=' + searchQuery;
+        console.log(url)
+
+        $.getJSON(url, function (apiData) {
+        var item = apiData;
+
+        $('.containerPhotos').append(item);
+
+        });
+    });
+}
+
+
 
 function getData(){    
     $(document).ready(function () {
@@ -34,39 +54,50 @@ function getData(){
         findSeasonSouth();
          }
 
-     // // Appending Content to the page
-        // // create a variable for the title, make it a h2 and add the text
+     // Get Content on the page
+        
+        // Importing month from user input
         var userMonth = document.getElementById('travelMonth').value;
-
+    
+        // Creating display variables for the different items
         var city = $('<h1>').html('City: ' + storeCity);
         var country = $('<h2>').html('Country: ' + storeCountry);
         var long = $('<h4>').html('Longitude: ' + storeLong);
         var latt = $('<h4>').html('Lattitude: ' + storeLatt);
         var hemi = $('<h4>').html('Hemisphere: ' + hemisphere);
-        var month = $('<h2>').html('Month: ' + userMonth);  
+        var month = $('<h2 class="capMonth">').html('Month: ' + userMonth);  
         var season = $('<h2>').html('Season: ' + travelSeason);
         
+         // Appending the display variables to relevant container ID
         $('.containerLocation').append(city,country,long,latt,hemi,month,season);
         
+        // Removing submit button and replacing with reset button
         document.getElementById("submitBtn").classList.add('hidden');
         document.getElementById("resetBtn").classList.remove('hidden');
+
+        // Set search query
+        searchQuery = userLocation + travelSeason
+
+        // calling function to getPhotos
+        getPhotos()
+
         });
     });
 }
 
 // Season Variables
-const northWinter = ['December', 'January', 'February']
-const northSpring = ['March', 'April', 'May']
-const northSummer = ['June', 'July', 'August']
-const northAutumn = ['September', 'October', 'November']
+const northWinter = ['december', 'january', 'february']
+const northSpring = ['march', 'april', 'may']
+const northSummer = ['june', 'july', 'august']
+const northAutumn = ['september', 'october', 'november']
 
-const southSummer = ['December', 'January', 'February']
-const southAutumn = ['March', 'April', 'May']
-const southWinter = ['June', 'July', 'August']
-const southSpring = ['September', 'October', 'November']
+const southSummer = ['december', 'january', 'february']
+const southAutumn = ['march', 'april', 'may']
+const southWinter = ['june', 'july', 'august']
+const southSpring = ['september', 'october', 'november']
 
 function findSeasonNorth() {
-    var userMonth = document.getElementById('travelMonth').value
+    var userMonth = document.getElementById('travelMonth').value.toLowerCase()
 
     if (northWinter.includes(userMonth)){
         console.log('Winter')
@@ -88,7 +119,7 @@ function findSeasonNorth() {
     }
 
 function findSeasonSouth() {
-    var userMonth = document.getElementById('travelMonth').value
+    var userMonth = document.getElementById('travelMonth').value.toLowerCase()
 
     if (southWinter.includes(userMonth)){
     console.log('Winter')
