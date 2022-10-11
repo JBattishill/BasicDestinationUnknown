@@ -3,11 +3,16 @@ var geoKey = "234979e2ff9e423095e4b2c869c1c97b";
 var imageKey = "AIzaSyDpsLn14cZzKJi0o0lQhMmwplnjl5wLN74"
 var imageSearchID = '474f1fff433d047cf'
 
+// Test variables
+var testLocation = "Paris";
+var testMonth = "December";
+
 // Variables for future data
 var userLocation = "";
 var hemisphere = "";
 var travelSeason = "";
 var searchQuery = "";
+
 
 function getPhotos(){    
     $(document).ready(function () {
@@ -26,14 +31,74 @@ function getPhotos(){
                     var imgSrc = item.link;
                     var imgAlt = item.title;
             // Make sure HTML in item.htmlTitle is escaped.
-            var imgtest = $('<img class = "searchImage" src= "' + imgSrc + '" alt="'+ imgAlt +'">').html()
+            var imgtest = $('<img src='+ imgSrc + '>')
             console.log(imgtest)
             $('.containerPhotos').append(imgtest)
+            
           }
          });
     });
 }
 
+function testData(){    
+    $(document).ready(function () {
+        var userLocation = testLocation;
+        
+        var url = 'https://api.geoapify.com/v1/geocode/search?text=' + userLocation + '&limit=1&format=json&apiKey=' + geoKey;
+
+        $.getJSON(url, function (apiData) {
+        
+        var item = apiData.results[0];
+        
+        //variables to make it easier to target relevant data from the API
+        var storeCity = item.city;
+        var storeCountry = item.country;
+        var storeLatt = item.lat
+        var storeLong = item.lon
+        var userMonth = travelMonth;
+        
+        // Testing if Lattitude is above or below the Equator and calling season finder
+        if (storeLatt > 0) {
+        hemisphere = "North",
+        findSeasonNorth();
+        }
+
+        else {
+        hemisphere = "South",
+        findSeasonSouth();
+         }
+
+     // Get Content on the page
+        
+        // Importing month from user input
+        var userMonth = testMonth;
+    
+        // Creating display variables for the different items
+        var city = $('<h1>').html('City: ' + storeCity);
+        var country = $('<h2>').html('Country: ' + storeCountry);
+        var long = $('<h4>').html('Longitude: ' + storeLong);
+        var latt = $('<h4>').html('Lattitude: ' + storeLatt);
+        var hemi = $('<h4>').html('Hemisphere: ' + hemisphere);
+        var month = $('<h2 class="capMonth">').html('Month: ' + userMonth);  
+        var season = $('<h2>').html('Season: ' + travelSeason);
+        
+         // Appending the display variables to relevant container ID
+        $('.containerLocation').append(city,country,long,latt,hemi,month,season);
+        
+        // Removing submit button and replacing with reset button
+        document.getElementById("submitBtn").classList.add('hidden');
+        document.getElementById("resetBtn").classList.remove('hidden');
+
+        // Set search query
+        searchQuery = (userLocation + travelSeason)
+        console.log(searchQuery)
+
+        // calling function to getPhotos
+        getPhotos()
+
+        });
+    });
+}
 
 function getData(){    
     $(document).ready(function () {

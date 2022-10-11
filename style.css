@@ -14,6 +14,10 @@
     padding: 30px;
     background-color: rgb(179, 226, 255);
     color: darkslategrey;
+    max-width: 100vw;
+    height: auto;
+    display:table;
+    overflow:scroll;
 }
 
 .hidden{
@@ -22,4 +26,17 @@
 
 .capMonth{
 text-transform: capitalize;
+}
+
+#testBtn{
+    margin-left: 2vh;
+    background-color: darksalmon;
+    color: white;
+}
+
+img{
+    margin: 20px;
+    width: 100px;
+    height: auto;
+    border: 1px solid black;
 }
