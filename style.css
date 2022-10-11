@@ -1,0 +1,25 @@
+
+.wrapper{
+    margin: 10% auto;
+    width: 50%;
+}
+
+.containerLocation{
+    padding: 30px;
+    background-color: rgb(255, 187, 179);
+    color: darkslategrey;
+}
+.containerSeason{
+    margin-top: 2vh;
+    padding: 30px;
+    background-color: rgb(179, 226, 255);
+    color: darkslategrey;
+}
+
+#seasonBtn{
+    margin-top: 2vh;
+}
+
+.hidden{
+    display: none;
+}
