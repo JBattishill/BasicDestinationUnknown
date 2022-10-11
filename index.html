@@ -8,29 +8,24 @@
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous"></script>
     </head>
-<body>
+    <body>
+        <div class="wrapper">
 
-    <div class="wrapper">
+            <form id="frm1" class="userInput" action="/action_page.php">
+                Location: <input type="text" name="Location" id="travelLocation"><br>
+                Month: <input type="text" name="Month" id="travelMonth"><br><br>
+                <input id="submitBtn" type="button" onclick="getData()" value="Submit">
+                <input id="resetBtn" class="hidden" type="button" onclick="window.location.reload()" value="Reset">
+            </form>
 
-    <form id="frm1" class="userInput" action="/action_page.php">
-        Location: <input type="text" name="Location" id="travelLocation"><br>
-        Month: <input type="text" name="Month" id="travelMonth"><br><br>
-        <input id="submitBtn" type="button" onclick="getData()" value="Submit">
-        <input id="resetBtn" class="hidden" type="button" onclick="window.location.reload()" value="Reset">
-    </form>
+            <div class="containerLocation">
+            <!-- html tags and content is added here directly through the jquery -->
+            </div>
 
-    <div class="containerLocation">
-    <!-- html tags and content is added here directly through the jquery -->
-    </div>
- 
-    <input id="seasonBtn" class="hidden" type="button" onclick="testSeason()" value="Season">
+        </div>
 
-    <div class="containerSeason">
-        <!-- html tags and content is added here directly through the jquery -->
-    </div>
+        <script src="script.js"></script>
 
-</div>
-<script src="script.js"></script>
-</body>
+    </body>
 
 </html>
