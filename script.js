@@ -253,7 +253,7 @@ function getData(){
         getWeather()
 
         // calling function to get Photos from google image search API, filtered to images from www.unsplash.com
-        // getPhotos()
+        getPhotos()
 
         });
     });
