@@ -46,7 +46,8 @@ var travelSeason = "";
 
 function getPhotos(){    
     $(document).ready(function () {        
-        var url = 'https://www.googleapis.com/customsearch/v1?imgSize=LARGE&imgType=photo&siteSearchFilter=i&imgColorType=color&searchType=image&num=9&key=' + testImageKey + '&cx=' + imageSearchID + '&q=' + searchQuery;
+        var url = 'https://www.googleapis.com/customsearch/v1?imgSize=LARGE&imgType=photo&siteSearchFilter=i&imgColorType=color&searchType=image&num=9&key=' 
+        + imageKey + '&cx=' + imageSearchID + '&q=' + searchQuery;
         
         console.log(url)
         $.getJSON(url, function (apiData) {
