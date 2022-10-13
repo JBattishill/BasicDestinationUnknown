@@ -1,21 +1,36 @@
 // Wikipedia Variables
 
 // Weather Variables
-var weatherKey = "dcc0a4770fed667dbb2a12e8f1a86009"
-var travelTime = ""
-var destinationLat = "48.85"
-var destinationLon = "2.34"
+var travelLat = ""
+var travelLong = ""
+var weatherDateStart = ""
+var weatherDateEnd = ""
 
-// Timestamp Variables - North and South Hemispheres
-const stampNorthWinter = "1514768400";
-const stampNorthSpring = "1522548000";
-const stampNorthSummer = "1530410400";
-const stampNorthAutumn = "1538359200";
+// Season Start and end dates - for North and South Hemispheres
+const startNorthWinter = "2020-12-01";
+const endNorthWinter = "2021-02-28";
 
-const stampSouthSummer = "1514768400";
-const stampSouthAutumn = "1522548000";
-const stampSouthWinter = "1530410400";
-const stampSouthSpring = "1538359200";
+const startNorthSpring = "2021-03-01";
+const endNorthSpring = "2021-05-31";
+
+const startNorthSummer = "2021-06-01";
+const endNorthSummer = "2021-08-31";
+
+const startNorthAutumn = "2021-09-01";
+const endNorthAutumn = "2021-11-31";
+
+const startSouthSummer = "2020-12-01";
+const endSouthSummer = "2021-02-28";
+
+const startSouthAutumn = "2021-03-01";
+const endSouthAutumn = "2021-05-31";
+
+const startSouthWinter = "2021-06-01";
+const endSouthWinter = "2021-08-31";
+
+const startSouthSpring = "2021-09-01";
+const endSouthSpring= "2021-11-31";
+
 
 // Geolocation Variables
 var geoKey = "234979e2ff9e423095e4b2c869c1c97b";
@@ -32,6 +47,7 @@ var travelSeason = "";
 function getPhotos(){    
     $(document).ready(function () {        
         var url = 'https://www.googleapis.com/customsearch/v1?imgSize=LARGE&imgType=photo&siteSearchFilter=i&imgColorType=color&searchType=image&num=9&key=' + testImageKey + '&cx=' + imageSearchID + '&q=' + searchQuery;
+        
         console.log(url)
         $.getJSON(url, function (apiData) {
 
@@ -46,9 +62,12 @@ function getPhotos(){
         }
     });
     var userLocation = document.getElementById('travelLocation').value;
-    var photoCity = $('<h1 class= "capMonth">').html(userLocation + ' in ' + travelSeason);
+    var photoCity = $('<h1 class= "capMonth">').html('What ' + userLocation + ' can look like in in ' + travelSeason);
     $('.photoHeading').append(photoCity);
 });
+
+
+// this came in handy when I sliced the time down in get weather
 
         // Unsuccessful attempt - Array slicing for image formatting
         // I attempted to slice apiData into array of arrays that were each only 3 items long.
@@ -106,92 +125,110 @@ function getWeather(){
     // Calls functions to get timestamps for weatherData
     if (hemisphere === "North") {
         getStampNorth();}
-
         else  {
         getStampSouth();
         }
 
     $(document).ready(function () {
-    var userLocation = document.getElementById('travelLocation').value;
-    // var url = 'http://history.openweathermap.org/data/3.0/history/locations/create?lat=' + destinationLat + '&lon=' + destinationLon + '&dt=' + travelTime + '&appid=' + weatherKey
 
-
-    var url = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=' + weatherKey;     
+    var url =  'https://archive-api.open-meteo.com/v1/era5?latitude=' + travelLat+ '&longitude=' + travelLong + '&start_date=' +
+         weatherDateStart + '&end_date=' + weatherDateEnd + '&timezone=auto&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,snowfall_sum'
+       
     $.getJSON(url, function (weatherData) {
     
-        console.log(weatherData)
-
-    var item = weatherData.list[0];
-    console.log(item)
+    var item = weatherData.daily;
 
     // cannot get targetted location or historical data atm but here is some random data from Moscow
     // This was really a logic check to make sure I could do things, I can format things and change temps etc later. 
     
-    
     // variables target relevant data from the API
-    var storeTemp = item.main.temp;
-    var storeFeels = item.main.feels_like;
-    var storeHumidity = item.main.humidity;
-    var storeWind = item.wind.speed;
-    var storeWeather = item.weather[0].main;
-    var storeCloud = item.weather[0].description;
-    var storeCity = weatherData.city.name;
+    var calcMaxTemp = item.temperature_2m_max;
+    var calcMinTemp = item.temperature_2m_min;
+    var calcRainfall = item.rain_sum;
+    var calcSnowfall = item.snowfall_sum;
+    var calcSunrise = item.sunrise;
+    var calcSunset = item.sunset;
+    var timezone = weatherData.timezone
+
+    // Slicing time down to HH:MM - I set it to use 45th day as a hacky solution for finding the median of the season...  
+    // (3 months is ~90 days, 45 is half of 90, big math...)
+    // The better solution would be finding the real median.
+
+    var avgSunrise = (calcSunrise[45].slice(-5));
+    var avgSunset = (calcSunset[45].slice(-5));
+
+    var avgMaxTemp = (calcMaxTemp.reduce((a,b) => (a+b)) / calcMaxTemp.length);
+    var avgMinTemp = (calcMinTemp.reduce((a,b) => (a+b)) / calcMinTemp.length);
+    var avgRainfall = (calcRainfall.reduce((a,b) => (a+b)) / calcRainfall.length);
+    var avgSnowfall = (calcSnowfall.reduce((a,b) => (a+b)) / calcSnowfall.length);
+
+    var storeMaxTemp = avgMaxTemp.toFixed(1);
+    var storeMinTemp = avgMinTemp.toFixed(1);
+    var storeSunrise = avgSunrise;
+    var storeSunset = avgSunset;
+    var storeRainfall = avgRainfall.toFixed(2);
+    var storeSnowfall = avgSnowfall.toFixed(2);
 
 
     // Get Content on the page
     
     // Creating display variables for the different items
-    var temp = $('<h3>').html('Temp: ' + storeTemp);
-    var feels = $('<h3>').html('Temp Feels like: ' + storeFeels);
-    var humidity = $('<h3>').html('Humidity: ' + storeHumidity);
-    var wind = $('<h3>').html('Wind: ' + storeWind);
-    var weatherMain = $('<h3>').html('Weather Main: ' + storeWeather);
-    var description = $('<h3 class="capitilise">').html('Description: ' + storeCloud);  
-    var icon = $('<h2>').html('City: '+ storeCity);
-    
+    var maxTemp = $('<h3>').html('Max Temp: ' + storeMaxTemp + '&#8451');
+    var minTemp = $('<h3>').html('Min Temp: ' + storeMinTemp + '&#8451');
+    var sunrise = $('<h3>').html('Sunrise: ' + storeSunrise);
+    var sunset = $('<h3>').html('Sunset: ' + storeSunset);
+    var rainfall = $('<h3>').html('Rainfall: ' + storeRainfall + 'mm');
+    var snowfall = $('<h3>').html('Snowfall: ' + storeSnowfall + 'mm');
+    var timezone = $('<h3>').html('Timezone: ' + timezone);
+   
      // Appending the display variables to relevant container ID
-    $('.containerWeather').append(icon,temp,feels,humidity,wind,weatherMain,description);
-    
+    $('.containerWeather').append(
+        maxTemp,minTemp,sunrise,sunset,rainfall,snowfall,timezone
+    );
     }); 
    });
 }
 
 function getStampNorth(){
-    console.log(travelTime)
 
     if (travelSeason === "Winter"){
-        travelTime = stampNorthWinter}
+        weatherDateStart = startNorthWinter
+        weatherDateEnd = endNorthWinter}
 
     else if (travelSeason === "Spring"){
-        travelTime = stampNorthSpring}
+        weatherDateStart = startNorthSpring
+        weatherDateEnd = endNorthSpring}
+       
        
     else if (travelSeason === "Summer"){
-            travelTime = stampNorthSummer}
+        weatherDateStart = startNorthSummer
+        weatherDateEnd = endNorthSummer}
             
     else if (travelSeason === "Autumn"){
-            travelTime = stampNorthAutumn}
+        weatherDateStart = startNorthAutumn
+        weatherDateEnd = endNorthAutumn}
 
     else {console.log("There was an issue with function getStampNorth")}
-    console.log(travelTime)
 }
 
 function getStampSouth(){
-    console.log(travelTime)
     if (travelSeason === "Winter"){
-        travelTime = stampSouthWinter}
-
+        weatherDateStart = startSouthWinter
+        weatherDateEnd = endSouthWinter}
 
     else if (travelSeason === "Spring"){
-        travelTime = stampSouthSpring}
+        weatherDateStart = startSouthSpring
+        weatherDateEnd = endSouthSpring}
        
     else if (travelSeason === "Summer"){
-            travelTime = stampSouthSummer}
+        weatherDateStart = startSouthSummer
+        weatherDateEnd = endSouthSummer}
             
     else if (travelSeason === "Autumn"){
-            travelTime = stampSouthAutumn}
+        weatherDateStart = startSouthAutumn
+        weatherDateEnd = endSouthAutumn}
 
     else {console.log("There was an issue with function getStampSouth")}
-    console.log(travelTime)
 }
 
 
@@ -208,12 +245,16 @@ function getData(){
         //variables to make it easier to target relevant data from the API
         var storeCity = item.city;
         var storeCountry = item.country;
-        var storeLatt = item.lat
-        var storeLong = item.lon
+        var storeLat = item.lat;
+        var storeLong = item.lon;
         var userMonth = travelMonth;
         
-        // Testing if Lattitude is above or below the Equator and calling season finder
-        if (storeLatt > 0) {
+        // lat and long needs to be 2 decimal places for WeatherAPI
+        travelLat = storeLat.toFixed(2);
+        travelLong = storeLong.toFixed(2);
+        
+        // Testing if Latitude is above or below the Equator and calling season finder
+        if (storeLat > 0) {
         hemisphere = "North",
         findSeasonNorth();
         }
@@ -229,16 +270,16 @@ function getData(){
         var userMonth = document.getElementById('travelMonth').value;
     
         // Creating display variables for the different items
-        var city = $('<h1>').html('City: ' + storeCity);
-        var country = $('<h2>').html('Country: ' + storeCountry);
-        var long = $('<h4>').html('Longitude: ' + storeLong);
-        var latt = $('<h4>').html('Lattitude: ' + storeLatt);
+        var city = $('<h2>').html('City: ' + storeCity);
+        var country = $('<h3>').html('Country: ' + storeCountry);
+        var long = $('<h4>').html('Longitude: ' + travelLong);
+        var lat = $('<h4>').html('Latitude: ' + travelLat);
         var hemi = $('<h4>').html('Hemisphere: ' + hemisphere);
-        var month = $('<h2 class="capitilise">').html('Month: ' + userMonth);  
-        var season = $('<h2>').html('Season: ' + travelSeason);
+        var month = $('<h4 class="capitilise">').html('Month: ' + userMonth);  
+        var season = $('<h4>').html('Season: ' + travelSeason);
         
          // Appending the display variables to relevant container ID
-        $('.containerLocation').append(city,country,long,latt,hemi,month,season);
+        $('.containerLocation').append(city,country,long,lat,hemi,month,season);
         
         // Removing submit button and replacing with reset button
         document.getElementById("submitBtn").classList.add('hidden');

@@ -91,9 +91,9 @@ body{
 }
 
 .title{
-    font-size: x-large;
+    font-size: large;
     font-weight: 600;
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
 }
 
 h1{
@@ -106,7 +106,8 @@ h2{
  h3{
     font-size: large;
  }
- h3{
+ 
+ h4{
     font-size: medium;
  }
 
