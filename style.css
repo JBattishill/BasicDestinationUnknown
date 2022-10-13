@@ -106,7 +106,7 @@ h2{
  h3{
     font-size: large;
  }
- 
+
  h4{
     font-size: medium;
  }
@@ -133,32 +133,47 @@ h2{
     margin-top: 2vh;
     margin-bottom: 2vh;
     background-color: darkgreen;
-    width: 100vw;
     padding: 30px;
 }
 
 .column img {
-    width: auto;
     max-width: 25%;
-    width: 400px;
-    height: 500px;
+    width: 20vw;
+    height: 40vh;
     border: 3px white;
     border-radius: 15px;
     /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
     padding: 4vh 2vw;
     vertical-align: middle;
     object-fit: cover;  
-    transition: .5s all ease-in-out;
+    transition: .3s all ease-in-out;
 }
 
 
 img:hover{
-    transform: scale(1.5);
+    height: auto;
+    transform: scale(2);
     object-fit:fill;  
     background-color: white;
     border: 20px white;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .column{
+        width:auto
+    }
+
+    img{
+        width: auto;
+        height: auto;
+        max-width: 80%;
+        width: 80%;
+    }
+
+
 }
 
 .row{
