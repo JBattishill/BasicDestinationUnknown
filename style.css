@@ -38,6 +38,11 @@ body{
     text-align: center;
     width: fit-content;
 }
+.formText{
+    text-align: center;
+    font-size: small;
+    font-weight: 600;
+}
 #resetBtn{
     padding: 20px 10px;
     background-color: green;

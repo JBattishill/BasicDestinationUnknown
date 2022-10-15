@@ -1,4 +1,6 @@
 // Wikipedia Variables
+var travelCity = ""
+var travelCountry = ""
 
 // Weather Variables
 var travelLat = ""
@@ -31,6 +33,16 @@ const endSouthWinter = "2021-08-31";
 const startSouthSpring = "2021-09-01";
 const endSouthSpring= "2021-11-31";
 
+// Season Variables
+const northWinter = ['december', 'january', 'february']
+const northSpring = ['march', 'april', 'may']
+const northSummer = ['june', 'july', 'august']
+const northAutumn = ['september', 'october', 'november']
+
+const southSummer = ['december', 'january', 'february']
+const southAutumn = ['march', 'april', 'may']
+const southWinter = ['june', 'july', 'august']
+const southSpring = ['september', 'october', 'november']
 
 // Geolocation Variables
 var geoKey = "234979e2ff9e423095e4b2c869c1c97b";
@@ -232,6 +244,50 @@ function getStampSouth(){
     else {console.log("There was an issue with function getStampSouth")}
 }
 
+function getWikiInfo(){
+
+    $(document).ready(function () {
+
+    var url =  'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + travelCity + travelCountry + '&utf8=&format=json&origin=*'
+
+    console.log(url)
+    $.getJSON(url, function (wikiData) {
+    
+    console.log(wikiData)
+    var item = wikiData.query.search[0];
+
+    // cannot get targetted location or historical data atm but here is some random data from Moscow
+    // This was really a logic check to make sure I could do things, I can format things and change temps etc later. 
+    
+    // variables target relevant data from the API
+    var storeTitle = item.snippet;
+    var storeSnippet = item.snippet;
+
+    // Get Content on the page
+    
+    // Creating display variables for the different items
+    var title = $('<h4>').html(storeTitle);
+    var snippet = $('<p>').html(storeSnippet);
+   
+     // Appending the display variables to relevant container ID
+    $('.containerInfo').append(title,snippet);
+    }); 
+   });
+}
+
+function findHemisphere(){
+
+    // function to test if Latitude is above or below the Equator and calling season finder
+    if (travelLat > 0) {
+    hemisphere = "North",
+    findSeasonNorth();
+    }
+
+    else {
+    hemisphere = "South",
+    findSeasonSouth();
+    }
+}
 
 function getData(){    
     $(document).ready(function () {
@@ -250,20 +306,15 @@ function getData(){
         var storeLong = item.lon;
         var userMonth = travelMonth;
         
+        // Storing city and country in variables to be used by APIs
+        travelCity = storeCity
+        travelCountry = storeCountry
+
         // lat and long needs to be 2 decimal places for WeatherAPI
         travelLat = storeLat.toFixed(2);
         travelLong = storeLong.toFixed(2);
-        
-        // Testing if Latitude is above or below the Equator and calling season finder
-        if (storeLat > 0) {
-        hemisphere = "North",
-        findSeasonNorth();
-        }
 
-        else {
-        hemisphere = "South",
-        findSeasonSouth();
-         }
+        findHemisphere()
 
      // Get Content on the page
         
@@ -297,20 +348,11 @@ function getData(){
         // calling function to get Photos from google image search API, filtered to images from www.unsplash.com
         getPhotos()
 
+        getWikiInfo()
+
         });
     });
 }
-
-// Season Variables
-const northWinter = ['december', 'january', 'february']
-const northSpring = ['march', 'april', 'may']
-const northSummer = ['june', 'july', 'august']
-const northAutumn = ['september', 'october', 'november']
-
-const southSummer = ['december', 'january', 'february']
-const southAutumn = ['march', 'april', 'may']
-const southWinter = ['june', 'july', 'august']
-const southSpring = ['september', 'october', 'november']
 
 function findSeasonNorth() {
     var userMonth = document.getElementById('travelMonth').value.toLowerCase()
