@@ -1,12 +1,21 @@
-// Wikipedia Variables
-var travelCity = ""
-var travelCountry = ""
+// Random Location Variables
+var randomLocations = ['Bali Indonesia', 'New Orleans USA', 'Kerry Ireland', 
+'Marrakesh Morocco', 'Male, Maldives', 'Paris, France', 'Cape Town, South Africa', 
+'Bora Bora French Polynesia', 'Dubrovnik, Croatia', 'Tokyo, Japan', 'Paro, Bhutan',
+'Vancouver, Canada','Los Angeles, USA','Santorini Greece','Cinque Terre, Italy',
+'Buenos Aires, Argentina','London, England','Jaipur, India','Havana, Cuba','Waikato, New Zealand']
+
+var month = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
 // Weather Variables
+var weatherKey = "d9e3acc582b222c6021692be631852c5"
+var travelCountry = ""
 var travelLat = ""
 var travelLong = ""
 var weatherDateStart = ""
 var weatherDateEnd = ""
+var travelMonth = ""
+var travelLocation = ""
 
 // Season Start and end dates - for North and South Hemispheres
 const startNorthWinter = "2020-12-01";
@@ -56,6 +65,50 @@ var imageSearchID = '474f1fff433d047cf';
 var searchQuery = "";
 var travelSeason = "";
 
+function delayLoad(){
+setTimeout(() => {
+      userIP()
+  }, 6000);
+}
+
+function userIP(){
+    var urlIP =  'https://api.techniknews.net/ipgeo/'
+
+    $.getJSON(urlIP, function (ipData) {
+
+        var storeIPLat = ipData.lat;
+        var storeIPLon = ipData.lon;
+        IPLat = storeIPLat.toFixed(2);
+        IPLon = storeIPLon.toFixed(2);
+
+        var url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + IPLat+ '&lon=' + IPLon + '&appid=' + weatherKey  
+
+        console.log(url)
+        $.getJSON(url, function (ipWeatherData) {
+        
+        var item = ipWeatherData;
+
+        var ipCity = ipWeatherData.name;
+        //API sends temp in Kelvin, minus 273.15 to get Celcius
+        var ipTemp= item.main.temp - 273.15;
+        var roundedTemp = ipTemp.toFixed(1);
+
+        var ipWeather = item.weather[0].description;
+
+        var showIPCity = $('<h1>').html('It looks like you are in ' + ipCity) 
+        var showIPWeather = $('<h2>').html('It is currently ' + roundedTemp + ' &#8451' + ' and ' + ipWeather)
+        var showIPTemp = $('<h3 class="topSpace">').html('Ready to head somewhere more exciting?')
+
+        $('.containerHeader').append(
+            showIPCity,showIPWeather,showIPTemp);
+
+        document.getElementById("loading").classList.add("hidden");
+        document.getElementById("header").classList.remove("hidden");
+        document.getElementById("contentHider").classList.remove("hidden");
+    });
+    }); 
+}
+
 function getPhotos(){    
     $(document).ready(function () {        
         var url = 'https://www.googleapis.com/customsearch/v1?imgSize=LARGE&imgType=photo&siteSearchFilter=i&imgColorType=color&searchType=image&num=9&key=' 
@@ -74,9 +127,17 @@ function getPhotos(){
             $('.resultPhotos').append(imgtag)
         }
     });
-    var userLocation = document.getElementById('travelLocation').value;
-    var photoCity = $('<h1 class= "capMonth">').html('What ' + userLocation + ' can look like in in ' + travelSeason);
+    var photoCity = $('<h1 class= "capMonth">').html('What ' + travelCity + " " + travelCountry + ' can look like in in ' + travelSeason);
     $('.photoHeading').append(photoCity);
+
+    document.getElementById("body").classList.add(travelSeason);
+    document.getElementById("infoHider").classList.remove("hidden");
+
+    setTimeout(() => {
+        window.scroll(0, 600);
+    }, 1000);
+
+
 });
 
 
@@ -150,6 +211,9 @@ function getWeather(){
     $.getJSON(url, function (weatherData) {
     
     var item = weatherData.daily;
+
+    var maxTemp = $('<h3>').html('Max Temp: ' + storeMaxTemp + '&#8451');
+    var minTemp = $('<h3>').html('Min Temp: ' + storeMinTemp + '&#8451');
 
     // cannot get targetted location or historical data atm but here is some random data from Moscow
     // This was really a logic check to make sure I could do things, I can format things and change temps etc later. 
@@ -248,6 +312,9 @@ function getWikiInfo(){
 
     $(document).ready(function () {
 
+// Trying to target culture section for info
+        // var url ='https://en.wikipedia.org/w/api.php?action=parse&format=json&page=athens&prop=text&section=0&disabletoc=1&format=json&origin=*'
+
     var url =  'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + travelCity + travelCountry + '&utf8=&format=json&origin=*'
 
     console.log(url)
@@ -260,7 +327,7 @@ function getWikiInfo(){
     // This was really a logic check to make sure I could do things, I can format things and change temps etc later. 
     
     // variables target relevant data from the API
-    var storeTitle = item.snippet;
+    var storeTitle = item.title;
     var storeSnippet = item.snippet;
 
     // Get Content on the page
@@ -348,14 +415,12 @@ function getData(){
         // calling function to get Photos from google image search API, filtered to images from www.unsplash.com
         getPhotos()
 
-        getWikiInfo()
-
         });
     });
 }
 
 function findSeasonNorth() {
-    var userMonth = document.getElementById('travelMonth').value.toLowerCase()
+    var userMonth = travelMonth.toLowerCase()
 
     if (northWinter.includes(userMonth)){
         travelSeason = "Winter"}
@@ -373,7 +438,7 @@ function findSeasonNorth() {
     }
 
 function findSeasonSouth() {
-    var userMonth = document.getElementById('travelMonth').value.toLowerCase()
+    var userMonth = travelMonth.toLowerCase()
 
     if (southWinter.includes(userMonth)){
     travelSeason = "Winter"}
@@ -391,5 +456,64 @@ function findSeasonSouth() {
         console.log("There was an issue with function findSeasonSouth ")}
     }
 
+function getRandom(){
 
+    const randomTravel = Math.floor(Math.random() * randomLocations.length);
+    console.log(randomTravel, randomLocations[randomTravel]);
+    var travelLocation = (randomTravel, randomLocations[randomTravel])
+
+    const randomMonth = Math.floor(Math.random() * month.length);
+    travelMonth = (randomMonth, month[randomMonth])
+
+    var url = 'https://api.geoapify.com/v1/geocode/search?text=' + travelLocation + '&limit=1&format=json&apiKey=' + geoKey;
+
+    $.getJSON(url, function (apiData) {
+
+    var item = apiData.results[0];
     
+    //variables to make it easier to target relevant data from the API
+    var storeCity = item.city;
+    var storeCountry = item.country;
+    var storeLat = item.lat;
+    var storeLong = item.lon;
+    
+    // Storing city and country in variables to be used by APIs
+    travelCity = storeCity
+    travelCountry = storeCountry
+
+    // lat and long needs to be 2 decimal places for WeatherAPI
+    travelLat = storeLat.toFixed(2);
+    travelLong = storeLong.toFixed(2);
+
+    findHemisphere()
+
+ // Get Content on the page
+    
+    // Creating display variables for the different items
+    var city = $('<h2>').html('City: ' + storeCity);
+    var country = $('<h3>').html('Country: ' + storeCountry);
+    var long = $('<h4>').html('Longitude: ' + travelLong);
+    var lat = $('<h4>').html('Latitude: ' + travelLat);
+    var hemi = $('<h4>').html('Hemisphere: ' + hemisphere);
+    var month = $('<h4 class="capitilise">').html('Month: ' + travelMonth);  
+    var season = $('<h4>').html('Season: ' + travelSeason);
+    
+     // Appending the display variables to relevant container ID
+    $('.containerLocation').append(city,country,long,lat,hemi,month,season);
+    
+    // Removing submit button and replacing with reset button
+    document.getElementById("submitBtn").classList.add('hidden');
+    document.getElementById("randomBtn").classList.add('hidden');
+    document.getElementById("resetBtn").classList.remove('hidden');
+
+    // Set search query
+    searchQuery = (storeCity + storeCountry + " in " + travelSeason);
+    console.log(searchQuery);
+
+    // calling function to get weather from OpenWeather API
+    getWeather()
+
+    // calling function to get Photos from google image search API, filtered to images from www.unsplash.com
+    getPhotos()
+
+})}

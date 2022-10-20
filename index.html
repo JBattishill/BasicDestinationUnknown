@@ -9,48 +9,56 @@
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous"></script>
     </head>
-    <body>
-        <div class="wrapper">
-         <div class="row">
-            <div class="containerForm column">
-                <form id="frm1" class="userInput" action="/action_page.php">
-                    <p class="formText"> For best results, enter a city and country</p>
-                    Destination: <input type="text" name="Location" id="travelLocation"><br><br>
-                    Travel month: <input type="text" name="Month" id="travelMonth"><br><br>
-                    <input id="submitBtn" type="button" onclick="getData()" value="Submit">
-                </form>
-                <input id="resetBtn" class="hidden" type="button" onclick="window.location.reload()" value="Reset">
-            </div>
-         </div>
-
-         <div class="infoWrapper row">
-            <div id="idLocation" class=" containerLocation column">
-            <h1 class="title"> Location Details</h1>
-            <!-- html tags and content is added here directly through the jquery -->
-            </div>
-
-            <div id="idWeather" class=" containerWeather column">
-            <h1 class="title"> Weather </h1>
-            <h4> Daily averages for season</h4>
-            <!-- html tags and content is added here directly through the jquery -->
-            </div>
-
-            <div id="idInfo" class=" containerInfo column">
-            <h1 class="title"> Destination Information</h1>
-            <!-- html tags and content is added here directly through the jquery -->
+    <body onload="delayLoad()" id="body">
+        <div id="header" class="hidden">
+            <div class="containerHeader">
+            <!-- Text about user location and weather goes here -->
             </div>
         </div>
-
-                
+        <!-- Loading gif until userIP function is finished -->
+        <div id="loading">
+            <img class="logoBG" src="PlanelessLogo.svg" alt="logo">
+            <img class="loadingLogo" src="PlaneLogo.svg" alt="logo">
         </div>
+        <section class="loadingText">
+                <h1 class="destUnkText" data-text="Destination Unknown...">Destination Unknown...</h1>
+        </section>
 
-        <!-- change CSS image width and height from Pixels to VW/VH its not really responsive -->
-        <!-- change CSS image width and height from Pixels to VW/VH its not really responsive -->
+        
+        <!-- Over arching div is hidden userIP function is finished -->
+        <div id="contentHider" class="hidden">
+            <div class="wrapper">
+            <div class="row">
+                <div class="containerForm column">
+                    <form id="frm1" class="userInput" action="/action_page.php">
+                        <p class="formText"> For best results, enter a city and country</p>
+                        Destination: <input type="text" name="Location" id="travelLocation"><br><br>
+                        Travel month: <input type="text" name="Month" id="travelMonth"><br><br>
+                        <input id="submitBtn" type="button" onclick="getData()" value="Submit">
+                        <input id="randomBtn" type="button" onclick="getRandom()" value="Random">
+                    </form>
+                    <input id="resetBtn" class="hidden" type="button" onclick="window.location.reload()" value="Reset">
+                </div>
+            </div>
 
-<!-- Dont miss this before submitting -->        <!-- Dont miss this before submitting -->        <!-- Dont miss this before submitting -->
-      
-        <!-- change CSS image width and height from Pixels to VW/VH its not really responsive  -->
-        <!-- change CSS image width and height from Pixels to VW/VH its not really responsive  -->
+            <div id="infoHider"class="infoWrapper row hidden">
+                <div id="idLocation" class=" containerLocation column">
+                <h1 class="title"> Location Details</h1>
+                <!-- html tags and content is added here directly through the jquery -->
+                </div>
+
+                <div id="idWeather" class=" containerWeather column">
+                <h1 class="title"> Weather </h1>
+                <h4> Daily averages for season</h4>
+                <!-- html tags and content is added here directly through the jquery -->
+                </div>
+
+                <div id="idInfo" class=" containerInfo column hidden">
+                <h1 class="title"> Destination Information</h1>
+                <!-- html tags and content is added here directly through the jquery -->
+                </div>
+            </div>
+        </div>
 
         <div class="containerPhotos row">
             <div class="photoHeading capitilise">
@@ -62,6 +70,7 @@
             </div>
         </div>
            
+    </div>
         <script src="script.js"></script>
 
     </body>
