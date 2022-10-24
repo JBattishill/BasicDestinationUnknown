@@ -68,7 +68,7 @@ var travelSeason = "";
 function delayLoad(){
 setTimeout(() => {
       userIP()
-  }, 6000);
+  }, 1000);
 }
 
 function userIP(){
@@ -78,6 +78,7 @@ function userIP(){
 
         var storeIPLat = ipData.lat;
         var storeIPLon = ipData.lon;
+        var storeIPCity = ipData.city
         IPLat = storeIPLat.toFixed(2);
         IPLon = storeIPLon.toFixed(2);
 
@@ -88,21 +89,21 @@ function userIP(){
         
         var item = ipWeatherData;
 
-        var ipCity = ipWeatherData.name;
         //API sends temp in Kelvin, minus 273.15 to get Celcius
         var ipTemp= item.main.temp - 273.15;
         var roundedTemp = ipTemp.toFixed(1);
 
         var ipWeather = item.weather[0].description;
 
-        var showIPCity = $('<h1>').html('It looks like you are in ' + ipCity) 
-        var showIPWeather = $('<h2>').html('It is currently ' + roundedTemp + ' &#8451' + ' and ' + ipWeather)
-        var showIPTemp = $('<h3 class="topSpace">').html('Ready to head somewhere more exciting?')
+        // Creating text to go in the header block
+        var showIPCity = $('<h1>').html('It looks like you are in ' + storeIPCity) 
+        var showIPWeather = $('<h2>').html('The weather is currently ' + ipWeather + ' and ' + roundedTemp + ' &#8451')
+        var showIPTemp = $('<h3 class="topSpace">').html('Time to head somewhere exciting?')
 
         $('.containerHeader').append(
             showIPCity,showIPWeather,showIPTemp);
 
-        document.getElementById("loading").classList.add("hidden");
+        document.getElementById("loadingContent").classList.add("hidden");
         document.getElementById("header").classList.remove("hidden");
         document.getElementById("contentHider").classList.remove("hidden");
     });
@@ -127,7 +128,7 @@ function getPhotos(){
             $('.resultPhotos').append(imgtag)
         }
     });
-    var photoCity = $('<h1 class= "capMonth">').html('What ' + travelCity + " " + travelCountry + ' can look like in in ' + travelSeason);
+    var photoCity = $('<h1 class= "capMonth">').html('What ' + travelCity + " " + travelCountry + ' can look like in ' + travelSeason);
     $('.photoHeading').append(photoCity);
 
     document.getElementById("body").classList.add(travelSeason);
@@ -308,40 +309,6 @@ function getStampSouth(){
     else {console.log("There was an issue with function getStampSouth")}
 }
 
-function getWikiInfo(){
-
-    $(document).ready(function () {
-
-// Trying to target culture section for info
-        // var url ='https://en.wikipedia.org/w/api.php?action=parse&format=json&page=athens&prop=text&section=0&disabletoc=1&format=json&origin=*'
-
-    var url =  'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + travelCity + travelCountry + '&utf8=&format=json&origin=*'
-
-    console.log(url)
-    $.getJSON(url, function (wikiData) {
-    
-    console.log(wikiData)
-    var item = wikiData.query.search[0];
-
-    // cannot get targetted location or historical data atm but here is some random data from Moscow
-    // This was really a logic check to make sure I could do things, I can format things and change temps etc later. 
-    
-    // variables target relevant data from the API
-    var storeTitle = item.title;
-    var storeSnippet = item.snippet;
-
-    // Get Content on the page
-    
-    // Creating display variables for the different items
-    var title = $('<h4>').html(storeTitle);
-    var snippet = $('<p>').html(storeSnippet);
-   
-     // Appending the display variables to relevant container ID
-    $('.containerInfo').append(title,snippet);
-    }); 
-   });
-}
-
 function findHemisphere(){
 
     // function to test if Latitude is above or below the Equator and calling season finder
@@ -358,9 +325,9 @@ function findHemisphere(){
 
 function getData(){    
     $(document).ready(function () {
-        var userLocation = document.getElementById('travelLocation').value;
+        var travelLocation = document.getElementById('travelLocation').value;
         
-        var url = 'https://api.geoapify.com/v1/geocode/search?text=' + userLocation + '&limit=1&format=json&apiKey=' + geoKey;
+        var url = 'https://api.geoapify.com/v1/geocode/search?text=' + travelLocation + '&limit=1&format=json&apiKey=' + geoKey;
 
         $.getJSON(url, function (apiData) {
         
@@ -371,7 +338,6 @@ function getData(){
         var storeCountry = item.country;
         var storeLat = item.lat;
         var storeLong = item.lon;
-        var userMonth = travelMonth;
         
         // Storing city and country in variables to be used by APIs
         travelCity = storeCity
@@ -381,12 +347,15 @@ function getData(){
         travelLat = storeLat.toFixed(2);
         travelLong = storeLong.toFixed(2);
 
+     // Importing month from user input
+        travelMonth = document.getElementById('travelMonth').value;
+
+                        // I spent an hour trying to figure out why calling it kept crashing while I was calling findHemisphere before setting the travelMonth variable...
+
+        //Find hemisphere of location
         findHemisphere()
 
      // Get Content on the page
-        
-        // Importing month from user input
-        var userMonth = document.getElementById('travelMonth').value;
     
         // Creating display variables for the different items
         var city = $('<h2>').html('City: ' + storeCity);
@@ -394,7 +363,7 @@ function getData(){
         var long = $('<h4>').html('Longitude: ' + travelLong);
         var lat = $('<h4>').html('Latitude: ' + travelLat);
         var hemi = $('<h4>').html('Hemisphere: ' + hemisphere);
-        var month = $('<h4 class="capitilise">').html('Month: ' + userMonth);  
+        var month = $('<h4 class="capitilise">').html('Month: ' + travelMonth);  
         var season = $('<h4>').html('Season: ' + travelSeason);
         
          // Appending the display variables to relevant container ID
@@ -406,7 +375,7 @@ function getData(){
         document.getElementById("idLocation").classList.remove('hidden');
 
         // Set search query
-        searchQuery = (userLocation + " in " + travelSeason);
+        searchQuery = (travelLocation + " in " + travelSeason);
         console.log(searchQuery);
 
         // calling function to get weather from OpenWeather API
@@ -421,6 +390,8 @@ function getData(){
 
 function findSeasonNorth() {
     var userMonth = travelMonth.toLowerCase()
+    console.log(travelMonth)
+    console.log(userMonth)
 
     if (northWinter.includes(userMonth)){
         travelSeason = "Winter"}
@@ -439,6 +410,8 @@ function findSeasonNorth() {
 
 function findSeasonSouth() {
     var userMonth = travelMonth.toLowerCase()
+    console.log(travelMonth)
+    console.log(userMonth)
 
     if (southWinter.includes(userMonth)){
     travelSeason = "Winter"}
@@ -458,6 +431,7 @@ function findSeasonSouth() {
 
 function getRandom(){
 
+    // I should explain how this works...
     const randomTravel = Math.floor(Math.random() * randomLocations.length);
     console.log(randomTravel, randomLocations[randomTravel]);
     var travelLocation = (randomTravel, randomLocations[randomTravel])

@@ -4,28 +4,85 @@
         <title> Destination Unknown </title>
         <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
-        <script
-        src="https://code.jquery.com/jquery-3.6.1.js"
+        <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    fontFamily: {display: ['font-family: Poppins, sans-serif;'],},
+                    extend: { 
+                        colors: {
+                        pink: { 950: '#fcbdb7'},
+                        yellow: { 950: '#f2bd2c'},
+                        red: { 950: '#621A21', 1000: '#691D24'},
+                        green: { 950:'#c6e6d7', 1000:'#173a2c', }
+                        },
+                        screens: {
+                        'xs': '300px',      
+                        },
+                    },
+                }
+            }
+        </script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body onload="delayLoad()" id="body">
-        <div id="header" class="hidden">
-            <div class="containerHeader">
-            <!-- Text about user location and weather goes here -->
-            </div>
-        </div>
+       <div id="loadingContent" class="centerText">
+        <h2 class="text-2xl font-bold underline text-clifford"> Please keep your seat belt fastened until the plane has stopped moving</h2>
         <!-- Loading gif until userIP function is finished -->
-        <div id="loading">
+        <div id="loadingImage">
             <img class="logoBG" src="PlanelessLogo.svg" alt="logo">
             <img class="loadingLogo" src="PlaneLogo.svg" alt="logo">
         </div>
+        <div id="loadTextWrapper">
         <section class="loadingText">
-                <h1 class="destUnkText" data-text="Destination Unknown...">Destination Unknown...</h1>
+                <h1 class="destUnkText" data-text="Landing...">Landing...</h1>
         </section>
+        </div>
+     </div>
 
-        
-        <!-- Over arching div is hidden userIP function is finished -->
+     <div class="mt:0 flex flex-col justify-center h-auto pb-2">
+        <div class="self-center items-center flex flex-col sm:flex-row w-full md:w-5/6 xl:w-2/3 px-2">
+          <div class="w-full text-center sm:text-left sm:w-1/2">
+            <img class="mb-16 w-full object-fill mx-auto logocolorchange" src="logo.png" alt="Destination Unknown Logo">
+            <span class="text-green-950 text-xl tracking-wide">Not sure where to go next?</span>
+            <h2 class="text-green-950 mt-10 font-bold tracking-wide text-xl">How about 
+              <span class="content__container block font-tight text-yellow-950 font-display text-4xl my-2">
+                <ul class="content__container__list">
+                  <li class="content__container__list__item xl:pl-3">Athens</li>
+                  <li class="content__container__list__item xl:pl-3">Bali</li>
+                   <li class="content__container__list__item xl:pl-3">Christchurch</li>
+                  <li class="content__container__list__item xl:pl-3">Dubrovnik</li> 
+                  <li class="content__container__list__item xl:pl-3">Ecuador</li>            
+                  <li class="content__container__list__item xl:pl-3">France</li>  
+                  <li class="content__container__list__item text-3xl xl:pl-3">Go anywhere</li>
+                </ul>
+              </span>
+              <p class="text-green-950 tracking-wider text-2xl font-display">Travel the world and the seven seas - Eurythmics</p>
+          </div>
+         
+          <div class="w-full lg:self-center flex flex-row flex-no-wrap justify-center items-center">
+                <a class="w-auto self-center flex flex-col flex-row items-center px-10 py-5 text-green-1000 bg-green-950 rounded-lg shadow-md text-lg hover:bg-gray-50 hover:border-red"
+          href="#contentHider">Get started</a>  
+          </div>
+        </div>
+      </div>
+
+
+
+        <div id="header" class="hidden">
+            <div class="containerHeader">
+            <!-- Text about users location and weather goes here -->
+            </div>
+        </div>
+  
+            
+        <!-- Over arching div is hidden until userIP function is finished -->
         <div id="contentHider" class="hidden">
             <div class="wrapper">
             <div class="row">
