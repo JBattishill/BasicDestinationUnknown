@@ -356,7 +356,7 @@ body {
     border-radius: none;
   }
   #header{
-    height: 30vh;
+    margin-top: 5vh;
     align-self: center;
     align-items: center;
     align-content: center;
@@ -366,9 +366,9 @@ body {
     text-align: center;
   }
   .headerLogo{
-    width: 30vw;
+    width: 15vw;
     height: auto;
-    margin: 5vh auto;
+    margin: 2.5vh auto;
     position: inherit;   
   }
 }
