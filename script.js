@@ -98,8 +98,8 @@ var randomLocations = [
       userIP();
     }, 1000);
   }
-  
-  function userIP() {
+  function userIP() 
+  {
     var urlIP = "https://api.techniknews.net/ipgeo/";
   
     $.getJSON(urlIP, function (ipData) {
@@ -495,11 +495,14 @@ var randomLocations = [
     // I should explain how this works...
     const randomTravel = Math.floor(Math.random() * randomLocations.length);
     console.log(randomTravel, randomLocations[randomTravel]);
-    var travelLocation = (randomTravel, randomLocations[randomTravel]);
+    travelLocation = (randomTravel, randomLocations[randomTravel]);
   
     const randomMonth = Math.floor(Math.random() * month.length);
     travelMonth = (randomMonth, month[randomMonth]);
   
+    document.getElementById("travelLocation").value = travelLocation;
+    document.getElementById("travelMonth").value = travelMonth;
+    
     var url =
       "https://api.geoapify.com/v1/geocode/search?text=" +
       travelLocation +
