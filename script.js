@@ -96,7 +96,7 @@ var randomLocations = [
   function delayLoad() {
     setTimeout(() => {
       userIP();
-    }, 4000);
+    }, 1000);
   }
 
 //Function that watches the with the form and random button listening for the enter key - this is required because my form doesnt actually submit, it call the getData function.
@@ -194,10 +194,10 @@ $('.eventEnter').keydown(function(event) {
           $(".resultPhotos").append(imgtag);
         }
       });
-      var photoCity = $('<h2 class= "capMonth">').html(
+      var photoCity = $('<h2>').html(
         "What " +
           travelCity +
-          " " +
+          ", " +
           travelCountry +
           " can look like in " +
           travelSeason

@@ -41,6 +41,7 @@ body {
   
 
   .infoWrapper {
+    width: 80vw;
     margin: 0 auto;
     align-self: center;
     align-items: center;
@@ -50,53 +51,62 @@ body {
     justify-self: center;
     text-align: center;
   }
+
   .containerLocation {
+    display: inline-block;
+    max-width:100%;
+    width: 16vw;
+    height: auto;
     padding: 1vh 2vw;
     background-color: rgb(255, 255, 255);
     color: black;
-    width: 16vw;
-    height: 16vw;
     margin: 1vh 1vw;
     text-align: center;
     line-height: 200%;
     border-radius: 15px;
-    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 6px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
   
   .containerWeather {
+    display: inline-block;
+    max-width:100%;
+    width: 16vw;
+    height: auto;
     padding: 1vh 2vw;
     background-color: rgb(255, 255, 255);
     color: black;
-    width: 16vw;
-    height: 16vw;
     margin: 1vh 1vw;
     text-align: center;
     line-height: 200%;
     border-radius: 15px;
-    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 6px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
-  
+
   h1 {
-    font-size: 3vw;
+    font-size: 3rem;
     font-weight: 600;
   }
   h2 {
-    font-size: 2vw;
+    font-size: 2rem;
     font-weight: 400;
   }
   
   h3 {
-    font-size: 1vw;
+    font-size: 1.5rem;
     font-weight: 300;
   }
   
   h4 {
-    font-size: 0.75vw;
+    font-size: 1.25rem;
     font-weight: 200;
   }
   
   p {
-    font-size: 0.75vw;
+    font-size: 1rem;
     font-weight: 100;
   }
   
@@ -144,7 +154,7 @@ body {
     text-align: center;
     overflow: hidden;
   }
-  
+/*   
   .logoBG {
     left: 35vw;
     top: 15vh;
@@ -153,6 +163,13 @@ body {
     height: auto;
     width: 27vw;
     z-index: 1;
+  } */
+
+  .logo{
+    margin: 5vh auto;
+    text-align: center;
+    height: 30vh;
+    width: auto;
   }
   
   .loadingLogo {
@@ -199,7 +216,7 @@ body {
     font-weight: 700;
     position: relative;
     color: #ffffff;
-    font-size: 5vw;
+    font-size: 4rem;
   }
   
   .destUnkText::before {
@@ -214,7 +231,7 @@ body {
     color: #173a2c;
     overflow: hidden;
     animation: loading 5s ease-out forwards;
-    font-size: 5vw;
+    font-size: 4rem;
   }
   /* Messing with loading time to make it look like its working really hard... */
   @keyframes loading {
@@ -314,6 +331,7 @@ body {
     vertical-align: middle;
     object-fit: cover;
     transition: 0.3s all ease-in-out;
+    border-radius: 40px;
   }
   
   .column img:hover {
@@ -329,7 +347,7 @@ body {
   }
   
   /* Not sure if this is functioning correctly, neeeds more testing */
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .column {
       width: auto;
     }

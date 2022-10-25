@@ -20,13 +20,16 @@
       href="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/favicon.ico?v=1666652556128"
     />
   </head>
-  <body onload="userIP()" id="body">
+  <body onload="delayLoad()" id="body">
     <div id="loadingContent" class="centerText">
-      <h2>
-        Please keep your seat belt fastened until the plane has stopped moving
-      </h2>
       <!-- Loading gif until userIP function is finished -->
       <div id="loadingImage">
+        <img
+        class="logo"
+        src="logo.png"
+        alt="logo"
+      />
+<!--       
         <img
           class="logoBG"
           src="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/PlanelessLogo.svg?v=1666652545168"
@@ -36,9 +39,10 @@
           class="loadingLogo"
           src="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/PlaneLogo.svg?v=1666652550751"
           alt="logo"
-        />
+        /> -->
       </div>
       <div id="loadTextWrapper">
+        <h1>Destination Unknown</h1>
         <section class="loadingText">
           <h1 class="destUnkText" data-text="Landing...">Landing...</h1>
         </section>
@@ -52,7 +56,7 @@
     </div>
 
     <!-- Over arching div is hidden until userIP function is finished -->
-    <div id="contentHider" class="hidden column ">
+    <div id="contentHider" class="hidden column">
         <div class="eventEnter wrapper">
             <div class="row">
                 <div class="containerForm ">
@@ -74,6 +78,7 @@
             <div class="containerRandom row">
                 <a id="randomBtn" class="button" onclick="getRandom()">Random</a>
             </div>
+
             <div id="infoHider" class="infoWrapper row hidden">
                 <div id="idLocation" class="containerLocation column">
                     <h3 class="title">Location</h3>
@@ -85,11 +90,12 @@
                     <!-- html tags and content is added here directly through the JS Functions -->
                 </div>
             </div>
+            
       </div>
 
       <div class="containerPhotos row">
-        <div class="photoHeading capitilise">
-          <!-- Travel location and season will go here above the 9 photos from search results -->
+        <div class="photoHeading">
+          <!-- Travel location and will go here above the 9 photos from search results -->
         </div>
 
         <div class="resultPhotos column">
