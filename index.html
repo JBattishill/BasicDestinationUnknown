@@ -52,63 +52,44 @@
     </div>
 
     <!-- Over arching div is hidden until userIP function is finished -->
-    <div id="contentHider" class="hidden column">
-      <div class="wrapper">
-        <div class="row">
-          <div class="containerForm ">
-            <form id="frm1" class="userInput" action="/action_page.php">
-              <p class="formText">For best results, enter a city and country</p>
-              Destination:
-              <input
-                type="text"
-                name="Location"
-                id="travelLocation"
-              /><br /><br />
-              Travel month:
-              <input type="text" name="Month" id="travelMonth" /><br /><br />
-              <input
-                id="submitBtn"
-                type="button"
-                onclick="getData()"
-                value="Submit"
-              />
-            </form>
-            <input
-              id="resetBtn"
-              class="hidden"
-              type="button"
-              onclick="window.location.reload()"
-              value="Reset"
-            />
-          </div>
-        </div>
-        <div class="containerRandom row">
-            <a id="randomBtn" class="randomButton" onclick="getRandom()">Random</a>
-        </div>
-    
+    <div id="contentHider" class="hidden column ">
+        <div class="eventEnter wrapper">
+            <div class="row">
+                <div class="containerForm ">
+                    <form id="frm1" class="userInput" action="/action_page.php">
+                    <p class="formText">For best results, enter a city and country</p>
+                    Destination:
+                    <input
+                        type="text"
+                        name="Location"
+                        id="travelLocation"
+                    /><br /><br />
+                    Travel month:
+                    <input type="text" name="Month" id="travelMonth" /><br /><br />
+                    <a id="submitBtn" class="button" onclick="getData()">Submit</a>
+                    <a id="resetBtn" class="hidden button" onclick="window.location.reload()">Reset</a>
+                </form>
+                </div>
+            </div>
+            <div class="containerRandom row">
+                <a id="randomBtn" class="button" onclick="getRandom()">Random</a>
+            </div>
+            <div id="infoHider" class="infoWrapper row hidden">
+                <div id="idLocation" class="containerLocation column">
+                    <h3 class="title">Location</h3>
+                    <!-- html tags and content is added here directly through the JS Functions -->
+                </div>
 
-        <div id="infoHider" class="infoWrapper row hidden">
-          <div id="idLocation" class="containerLocation column">
-            <h1 class="title">Location Details</h1>
-            <!-- html tags and content is added here directly through the jquery -->
-          </div>
-
-          <div id="idWeather" class="containerWeather column">
-            <h1 class="title">Weather</h1>
-            <h4>Daily averages for season</h4>
-            <!-- html tags and content is added here directly through the jquery -->
-          </div>
-
-          <div id="idInfo" class="containerInfo column hidden">
-            <h1 class="title">Destination Information</h1>
-            <!-- html tags and content is added here directly through the jquery -->
-          </div>
-        </div>
+                <div id="idWeather" class="containerWeather column">
+                    <h3 class="title">Average weather </h3>
+                    <!-- html tags and content is added here directly through the JS Functions -->
+                </div>
+            </div>
       </div>
 
       <div class="containerPhotos row">
         <div class="photoHeading capitilise">
-          <!-- City Name will go here above 10 photos from search results -->
+          <!-- Travel location and season will go here above the 9 photos from search results -->
         </div>
 
         <div class="resultPhotos column">

@@ -96,8 +96,18 @@ var randomLocations = [
   function delayLoad() {
     setTimeout(() => {
       userIP();
-    }, 1000);
+    }, 4000);
   }
+
+//Function that watches the with the form and random button listening for the enter key - this is required because my form doesnt actually submit, it call the getData function.
+$('.eventEnter').keydown(function(event) {
+    //KeyCode 13 is Enter
+    if (event.keyCode == 13) {
+        getData();
+        return false;
+    }
+    });
+
   function userIP() 
   {
     var urlIP = "https://api.techniknews.net/ipgeo/";
@@ -155,7 +165,7 @@ var randomLocations = [
     $(document).ready(function () {
       var url =
         "https://www.googleapis.com/customsearch/v1?imgSize=LARGE&imgType=photo&siteSearchFilter=i&imgColorType=color&searchType=image&num=9&key=" +
-        imageKey +
+        testImageKey +
         "&cx=" +
         imageSearchID +
         "&q=" +
@@ -167,10 +177,13 @@ var randomLocations = [
           var item = apiData.items[i];
           var imgSrc = item.link;
           var imgAlt = item.title;
+
+          //This puts the image snippet as the image title which shows when hovering over image.
           var imgTitle = item.snippet;
+          
           // Make sure HTML in item.htmlTitle is escaped.
           var imgtag = $(
-            '<img class=""src=' +
+            "<img src=" +
               imgSrc +
               " alt=" +
               imgAlt +
@@ -181,7 +194,7 @@ var randomLocations = [
           $(".resultPhotos").append(imgtag);
         }
       });
-      var photoCity = $('<h1 class= "capMonth">').html(
+      var photoCity = $('<h2 class= "capMonth">').html(
         "What " +
           travelCity +
           " " +
@@ -198,57 +211,6 @@ var randomLocations = [
         window.scroll(0, 600);
       }, 1000);
     });
-  
-    // this came in handy when I sliced the time down in get weather
-  
-    // Unsuccessful attempt - Array slicing for image formatting
-    // I attempted to slice apiData into array of arrays that were each only 3 items long.
-    // I then put those arrays into indiviudally named arrays and parse through with a for loop appending each to different row in a CSS flex grid.
-    // From what I could see I successfully sliced 1 item into each array and could push that to the row.
-    // Paused for now, may return to this in class with Ben next week
-  
-    //    var dataArr = apiData.items
-    //    var imgArr1 = dataArr.slice(0,3);
-    //    var imgArr2 = dataArr.slice(0,3);
-    //    var immArr3 = dataArr.slice(0,3);
-  
-    //     console.log(dataArr)
-  
-    //     imgArr1 = dataArr[0]
-    //     imgArr2 = dataArr[1]
-    //     imgArr3 = dataArr[2]
-  
-    //     console.log(imgArr1)
-    //     console.log(imgArr2)
-    //     console.log(imgArr3)
-  
-    //     for (var i = 0; i < imgArr1.length; i++) {
-    //     var item = imgArr1[i];
-    //             var imgSrc = item.link;
-    //             var imgAlt = item.title;
-    //     // Make sure HTML in item.htmlTitle is escaped.
-    //     var imgtag = $('<img src='+ imgSrc + ' alt=' + imgAlt + '>')
-    //     $('.containerPhotos1').append(imgtag)
-    //     }
-  
-    //     for (var i = 0; i < imgArr2.length; i++) {
-    //         var item = imgArr2.items[i];
-    //                 var imgSrc = item.link;
-    //                 var imgAlt = item.title;
-    //         // Make sure HTML in item.htmlTitle is escaped.
-    //         var imgtag = $('<img src='+ imgSrc + ' alt=' + imgAlt + '>')
-    //         $('.containerPhotos2').append(imgtag)
-    //     }
-  
-    //     for (var i = 0; i < imgArr3.length; i++) {
-    //         var item = imgArr3.items[i];
-    //                 var imgSrc = item.link;
-    //                 var imgAlt = item.title;
-    //         // Make sure HTML in item.htmlTitle is escaped.
-    //         var imgtag = $('<img src='+ imgSrc + ' alt=' + imgAlt + '>')
-    //         $('.containerPhotos3').append(imgtag)
-    //     };
-    //   })
   }
   
   function getWeather() {
@@ -276,9 +238,6 @@ var randomLocations = [
   
         var maxTemp = $("<h3>").html("Max Temp: " + storeMaxTemp + "&#8451");
         var minTemp = $("<h3>").html("Min Temp: " + storeMinTemp + "&#8451");
-  
-        // cannot get targetted location or historical data atm but here is some random data from Moscow
-        // This was really a logic check to make sure I could do things, I can format things and change temps etc later.
   
         // variables target relevant data from the API
         var calcMaxTemp = item.temperature_2m_max;
@@ -315,11 +274,11 @@ var randomLocations = [
         // Creating display variables for the different items
         var maxTemp = $("<h3>").html("Max Temp: " + storeMaxTemp + "&#8451");
         var minTemp = $("<h3>").html("Min Temp: " + storeMinTemp + "&#8451");
-        var sunrise = $("<h3>").html("Sunrise: " + storeSunrise);
-        var sunset = $("<h3>").html("Sunset: " + storeSunset);
-        var rainfall = $("<h3>").html("Rainfall: " + storeRainfall + "mm");
-        var snowfall = $("<h3>").html("Snowfall: " + storeSnowfall + "mm");
-        var timezone = $("<h3>").html("Timezone: " + timezone);
+        var sunrise = $('<p class="topSpace">').html("Sunrise: " + storeSunrise);
+        var sunset = $("<p>").html("Sunset: " + storeSunset);
+        var rainfall = $("<p>").html("Rainfall: " + storeRainfall + "mm");
+        var snowfall = $("<p>").html("Snowfall: " + storeSnowfall + "mm");
+        var timezone = $("<p>").html("Timezone: " + timezone);
   
         // Appending the display variables to relevant container ID
         $(".containerWeather").append(
@@ -418,13 +377,13 @@ var randomLocations = [
         // Get Content on the page
   
         // Creating display variables for the different items
-        var city = $("<h2>").html("City: " + storeCity);
+        var city = $("<h3>").html("City: " + storeCity);
         var country = $("<h3>").html("Country: " + storeCountry);
-        var long = $("<h4>").html("Longitude: " + travelLong);
-        var lat = $("<h4>").html("Latitude: " + travelLat);
-        var hemi = $("<h4>").html("Hemisphere: " + hemisphere);
-        var month = $('<h4 class="capitilise">').html("Month: " + travelMonth);
-        var season = $("<h4>").html("Season: " + travelSeason);
+        var long = $('<p class = "topSpace">').html("Longitude: " + travelLong);
+        var lat = $("<p>").html("Latitude: " + travelLat);
+        var hemi = $("<p>").html("Hemisphere: " + hemisphere);
+        var month = $('<p class="capitilise">').html("Month: " + travelMonth);
+        var season = $("<p>").html("Season: " + travelSeason);
   
         // Appending the display variables to relevant container ID
         $(".containerLocation").append(

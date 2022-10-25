@@ -9,9 +9,9 @@ body {
   
   .header {
     width: 90vw;
-    margin: 2.5vh auto;
     display: flex;
     flex-wrap: wrap;
+    line-height: 200%;
   }
   
   .wrapper {
@@ -39,20 +39,8 @@ body {
       rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
   
-  .formText {
-    text-align: center;
-    font-size: small;
-    font-weight: 600;
-  }
-  #resetBtn {
-    margin: 1vh 2vw;
-    padding: 10px 20px;
-    background-color: #173a2c;
-    color: white;
-    font-size: x-large;
-  }
+
   .infoWrapper {
-    width: fit-content;
     margin: 0 auto;
     align-self: center;
     align-items: center;
@@ -63,7 +51,7 @@ body {
     text-align: center;
   }
   .containerLocation {
-    padding: 4vh 2vw;
+    padding: 1vh 2vw;
     background-color: rgb(255, 255, 255);
     color: black;
     width: 16vw;
@@ -76,7 +64,7 @@ body {
   }
   
   .containerWeather {
-    padding: 4vh 2vw;
+    padding: 1vh 2vw;
     background-color: rgb(255, 255, 255);
     color: black;
     width: 16vw;
@@ -88,18 +76,12 @@ body {
     overflow: hidden;
   }
   
-  .title {
-    font-size: large;
-    font-weight: 600;
-    margin-bottom: 1vh;
-  }
-  
   h1 {
     font-size: 3vw;
     font-weight: 600;
   }
   h2 {
-    font-size: 1vw;
+    font-size: 2vw;
     font-weight: 400;
   }
   
@@ -118,6 +100,12 @@ body {
     font-weight: 100;
   }
   
+  .title
+{
+    font-weight: 600;
+    line-height: 175%;
+}
+
   #header {
     height: 40vh;
     width: 80vw;
@@ -135,8 +123,7 @@ body {
   }
   
   .topSpace {
-    margin-top: 3vh;
-    font-weight: 600;
+    margin-top: 1vh;
   }
   
   .containerHeader {
@@ -271,9 +258,9 @@ body {
     justify-items: center;
     justify-self: center;
     text-align: center;
-
   }
-  .randomButton{
+
+  .button{
         box-shadow: 0px 10px 14px -7px #276873;
         background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
         background-color:#599bb3;
@@ -289,19 +276,11 @@ body {
         text-shadow:0px 1px 0px #3d768a;
     }
 
-    .randomButton:hover {
+    .button:hover {
         background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
         background-color:#408c99;
     }
-
-    .randomButton:active {
-        position:relative;
-        top:1px;
-    }
     
- 
-
-  
   .containerPhotos {
     padding: 30px;
     width: 90vw;
