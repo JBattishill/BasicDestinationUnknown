@@ -205,9 +205,11 @@ $('.eventEnter').keydown(function(event) {
   
       document.getElementById("body").classList.add(travelSeason);
       document.getElementById("infoHider").classList.remove("hidden");
+      document.getElementById("formHider").classList.add("hidden");
+
   
       setTimeout(() => {
-        window.scroll(0, 600);
+        window.scroll(0, 500);
       }, 1000);
     });
   }

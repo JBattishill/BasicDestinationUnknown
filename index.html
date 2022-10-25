@@ -60,7 +60,7 @@
     <div id="contentHider" class="hidden column">
         <div class="eventEnter wrapper">
             <div class="row">
-                <div class="containerForm ">
+                <div id="formHider" class="containerForm">
                     <form id="frm1" class="userInput" action="/action_page.php">
                     <p class="formText">For best results, enter a city and country</p>
                     Destination:
@@ -72,11 +72,11 @@
                     Travel month:
                     <input type="text" name="Month" id="travelMonth" /><br /><br />
                     <a id="submitBtn" class="button" onclick="getData()">Submit</a>
-                    <a id="resetBtn" class="hidden button" onclick="window.location.reload()">Reset</a>
-                </form>
+                  </form>
                 </div>
             </div>
             <div class="containerRandom row">
+                <a id="resetBtn" class="hidden button" onclick="window.location.reload()">Reset</a>
                 <a id="randomBtn" class="button" onclick="getRandom()">Random</a>
             </div>
 

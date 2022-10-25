@@ -1,7 +1,7 @@
 body {
-    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
+    background-image: linear-gradient(to right, #fa709a 0%, #feb840 100%);
+    background-size: 600% 600%;
+    animation: gradient 7s ease infinite;
     max-width: 100vw;
     overflow-x: scroll;
     font-family: "Poppins", sans-serif;
@@ -389,12 +389,8 @@ text-transform: capitalize;
 }
 
 .winter {
-background-image: radial-gradient(
-    circle 1224px at 10.6% 8.8%,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(153, 202, 251, 1) 100.2%
-);
-background-size: 400% 400%;
+background: linear-gradient(to right, #5cddc3, #37529c);
+background-size: 600% 600%;
 animation: gradient 7s ease infinite;
 height: 100vh;
 }
@@ -402,8 +398,8 @@ height: 100vh;
 .summer {
 background-image: linear-gradient(
     270.2deg,
-    rgba(255, 230, 112, 1) 10.4%,
-    rgb(100, 255, 105) 43.8%,
+    rgb(230, 191, 0) 10.4%,
+    rgb(192, 67, 0) 43.8%,
     rgba(0, 93, 219, 1) 105.8%
 );
 background-size: 400% 400%;
@@ -412,7 +408,7 @@ height: 100vh;
 }
 
 .spring {
-background: linear-gradient(to right, #43c6ac, #f8ffae);
+background: linear-gradient(to right, #5cddc3, #409c37);
 background-size: 400% 400%;
 animation: gradient 7s ease infinite;
 height: 100vh;
