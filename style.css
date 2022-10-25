@@ -5,15 +5,29 @@ body {
     max-width: 100vw;
     overflow-x: scroll;
     font-family: "Poppins", sans-serif;
+    color: white;
+  }
+
+  #header {
+    margin-top: 15vh;
+    height: 25vh;
+    width: 100vw;
+  }
+
+  .containerHeader {
+    text-align: center;
+    margin: 0 auto;
+    line-height: 300%;
+    vertical-align: middle;
   }
   
-  .header {
-    width: 90vw;
-    display: flex;
-    flex-wrap: wrap;
-    line-height: 200%;
+  .headerLogo{
+    width: 10vw;
+    height: auto;
+    margin: 0 3vw;
+    position: absolute;
   }
-  
+
   .wrapper {
     width: 90vw;
     margin: 0 auto;
@@ -55,7 +69,7 @@ body {
   .containerLocation {
     display: inline-block;
     max-width:100%;
-    width: 16vw;
+    width: fit-content;
     height: auto;
     padding: 1vh 2vw;
     background-color: rgb(255, 255, 255);
@@ -72,7 +86,7 @@ body {
   .containerWeather {
     display: inline-block;
     max-width:100%;
-    width: 16vw;
+    width: fit-content;
     height: auto;
     padding: 1vh 2vw;
     background-color: rgb(255, 255, 255);
@@ -85,6 +99,18 @@ body {
     rgba(0, 0, 0, 0.12) 6px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
+ 
+  .photoHeading h2{
+    font-family: "Poppins", sans-serif;
+    width: 100vw;
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
+    margin: 3vh auto;
+    color: white;
+    vertical-align: middle;
+  }
+
 
   h1 {
     font-size: 3rem;
@@ -115,31 +141,11 @@ body {
     font-weight: 600;
     line-height: 175%;
 }
-
-  #header {
-    height: 40vh;
-    width: 80vw;
-    margin: 0 auto;
-    align-self: center;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
-    justify-self: center;
-    text-align: center;
-    overflow: hidden;
-    vertical-align: middle;
-    line-height: 300%;
-  }
   
   .topSpace {
     margin-top: 1vh;
   }
   
-  .containerHeader {
-    margin: 0 auto;
-    margin-top: 10vh;
-  }
   
   #loadingContent {
     height: 100vh;
@@ -230,7 +236,8 @@ body {
     height: 120%;
     color: #173a2c;
     overflow: hidden;
-    animation: loading 5s ease-out forwards;
+    animation: loading 2s linear forwards;
+    animation-delay: .3s;
     font-size: 4rem;
   }
   /* Messing with loading time to make it look like its working really hard... */
@@ -241,24 +248,19 @@ body {
     20% {
       width: 20%;
     }
-    60% {
-      width: 50%;
+    35% {
+      width: 25%;
+    }
+    65% {
+      width: 60%;
     }
     75% {
-      width: 55%;
-    }
+        width: 90%;
+      }
     80% {
-      width: 80%;
+      width: 100%;
     }
-    95% {
-      width: 90%;
-    }
-    96% {
-      width: 96%;
-    }
-    97% {
-      width: 97%;
-    }
+ 
     100% {
       width: 100%;
     }
@@ -285,9 +287,8 @@ body {
         display:inline-block;
         cursor:pointer;
         color:#ffffff;
-        font-family:Arial;
-        font-size:20px;
-        font-weight:bold;
+        font-size: 1rem;
+        font-weight: 400;
         padding:13px 32px;
         text-decoration:none;
         text-shadow:0px 1px 0px #3d768a;
@@ -299,7 +300,6 @@ body {
     }
     
   .containerPhotos {
-    padding: 30px;
     width: 90vw;
     margin: 0 auto;
     align-self: center;
@@ -311,23 +311,13 @@ body {
     text-align: center;
   }
   
-  .containerPhotos h1 {
-    font-size: xx-large;
-    font-weight: 500;
-    color: white;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    background-color: darkgreen;
-    padding: 30px;
-  }
-  
   .column img {
-    max-width: 25%;
-    width: 20vw;
+    max-width: 30%;
+    width: 25vw;
     height: 40vh;
     border: 3px white;
     border-radius: 15px;
-    padding: 4vh 2vw;
+    padding: 1rem;
     vertical-align: middle;
     object-fit: cover;
     transition: 0.3s all ease-in-out;
@@ -336,90 +326,113 @@ body {
   
   .column img:hover {
     height: auto;
-    transform: scale(2);
+    transform: scale(1.5);
     object-fit: fill;
-    background-color: white;
-    border: 20px white;
+    background-color: rgb(255, 255, 255);
+    border: 1rem white;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
       rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
       rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
   
-  /* Not sure if this is functioning correctly, neeeds more testing */
-  @media only screen and (max-width: 800px) {
-    .column {
-      width: auto;
-    }
-  
-    img {
-      width: auto;
-      height: auto;
-      max-width: 80%;
-      width: 80%;
-    }
+  .column {
+    width: auto;
   }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 20px;
+
+  /* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 1040px) {
+      .column img {
+        max-width: 100%;
+        width: 80vw;
+        height: auto;
   }
-  
-  .hidden {
-    display: none;
+
+  .column img:hover{
+    transform: none;
+    object-fit: cover;
+    background-color: none;
+    border: none;
+    border-radius: none;
   }
-  
-  .capitilise {
-    text-transform: capitalize;
+  #header{
+    height: 30vh;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    text-align: center;
   }
-  
-  .winter {
-    background-image: radial-gradient(
-      circle 1224px at 10.6% 8.8%,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(153, 202, 251, 1) 100.2%
-    );
-    background-size: 400% 400%;
-    animation: gradient 7s ease infinite;
-    height: 100vh;
+  .headerLogo{
+    width: 30vw;
+    height: auto;
+    margin: 5vh auto;
+    position: inherit;   
   }
+}
   
-  .summer {
-    background-image: linear-gradient(
-      270.2deg,
-      rgba(255, 230, 112, 1) 10.4%,
-      rgb(100, 255, 105) 43.8%,
-      rgba(0, 93, 219, 1) 105.8%
-    );
-    background-size: 400% 400%;
-    animation: gradient 7s ease infinite;
-    height: 100vh;
-  }
-  
-  .spring {
-    background: linear-gradient(to right, #43c6ac, #f8ffae);
-    background-size: 400% 400%;
-    animation: gradient 7s ease infinite;
-    height: 100vh;
-  }
-  
-  .autumn {
-    background: linear-gradient(to right, #f3904f, #3b4371);
-    background-size: 400% 400%;
-    animation: gradient 7s ease infinite;
-    height: 100vh;
-  }
-  
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
+
+.row {
+display: flex;
+flex-wrap: wrap;
+padding: 0 20px;
+}
+
+.hidden {
+display: none;
+}
+
+.capitilise {
+text-transform: capitalize;
+}
+
+.winter {
+background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(153, 202, 251, 1) 100.2%
+);
+background-size: 400% 400%;
+animation: gradient 7s ease infinite;
+height: 100vh;
+}
+
+.summer {
+background-image: linear-gradient(
+    270.2deg,
+    rgba(255, 230, 112, 1) 10.4%,
+    rgb(100, 255, 105) 43.8%,
+    rgba(0, 93, 219, 1) 105.8%
+);
+background-size: 400% 400%;
+animation: gradient 7s ease infinite;
+height: 100vh;
+}
+
+.spring {
+background: linear-gradient(to right, #43c6ac, #f8ffae);
+background-size: 400% 400%;
+animation: gradient 7s ease infinite;
+height: 100vh;
+}
+
+.autumn {
+background: linear-gradient(to right, #f3904f, #3b4371);
+background-size: 400% 400%;
+animation: gradient 7s ease infinite;
+height: 100vh;
+}
+
+@keyframes gradient {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+}

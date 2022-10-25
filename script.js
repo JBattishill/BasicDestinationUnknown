@@ -3,7 +3,6 @@ var randomLocations = [
     "Ubud, Indonesia",
     "New Orleans, USA",
     "Marrakesh, Morocco",
-    "Male, Maldives",
     "Paris, France",
     "Cape Town, South Africa",
     "Dubrovnik, Croatia",
@@ -404,7 +403,7 @@ $('.eventEnter').keydown(function(event) {
         
   
         // Set search query
-        searchQuery = travelLocation + " in " + travelSeason;
+        searchQuery = travelCity + " " + travelCountry + " in " + travelSeason;
         console.log(searchQuery);
   
         // calling function to get weather from OpenWeather API
