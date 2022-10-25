@@ -52,10 +52,10 @@
     </div>
 
     <!-- Over arching div is hidden until userIP function is finished -->
-    <div id="contentHider" class="hidden">
+    <div id="contentHider" class="hidden column">
       <div class="wrapper">
         <div class="row">
-          <div class="containerForm column">
+          <div class="containerForm ">
             <form id="frm1" class="userInput" action="/action_page.php">
               <p class="formText">For best results, enter a city and country</p>
               Destination:
@@ -66,12 +66,6 @@
               /><br /><br />
               Travel month:
               <input type="text" name="Month" id="travelMonth" /><br /><br />
-              <input
-              id="randomBtn"
-              type="button"
-              onclick="getRandom()"
-              value="Random"
-              />
               <input
                 id="submitBtn"
                 type="button"
@@ -88,6 +82,10 @@
             />
           </div>
         </div>
+        <div class="containerRandom row">
+            <a id="randomBtn" class="randomButton" onclick="getRandom()">Random</a>
+        </div>
+    
 
         <div id="infoHider" class="infoWrapper row hidden">
           <div id="idLocation" class="containerLocation column">
