@@ -1,135 +1,123 @@
 <html>
-
-    <head>
-        <title> Destination Unknown </title>
-        <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="style.css">
-        <script src="https://code.jquery.com/jquery-3.6.1.js"
-        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    fontFamily: {display: ['font-family: Poppins, sans-serif;'],},
-                    extend: { 
-                        colors: {
-                        pink: { 950: '#fcbdb7'},
-                        yellow: { 950: '#f2bd2c'},
-                        red: { 950: '#621A21', 1000: '#691D24'},
-                        green: { 950:'#c6e6d7', 1000:'#173a2c', }
-                        },
-                        screens: {
-                        'xs': '300px',      
-                        },
-                    },
-                }
-            }
-        </script>
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-    </head>
-    <body onload="delayLoad()" id="body">
-       <div id="loadingContent" class="centerText">
-        <h2 class="text-2xl font-bold underline text-clifford"> Please keep your seat belt fastened until the plane has stopped moving</h2>
-        <!-- Loading gif until userIP function is finished -->
-        <div id="loadingImage">
-            <img class="logoBG" src="PlanelessLogo.svg" alt="logo">
-            <img class="loadingLogo" src="PlaneLogo.svg" alt="logo">
-        </div>
-        <div id="loadTextWrapper">
+  <head>
+    <title>Destination Unknown</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/favicon.ico?v=1666652556128"
+    />
+  </head>
+  <body onload="delayLoad()" id="body">
+    <div id="loadingContent" class="centerText">
+      <h2>
+        Please keep your seat belt fastened until the plane has stopped moving
+      </h2>
+      <!-- Loading gif until userIP function is finished -->
+      <div id="loadingImage">
+        <img
+          class="logoBG"
+          src="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/PlanelessLogo.svg?v=1666652545168"
+          alt="logo"
+        />
+        <img
+          class="loadingLogo"
+          src="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/PlaneLogo.svg?v=1666652550751"
+          alt="logo"
+        />
+      </div>
+      <div id="loadTextWrapper">
         <section class="loadingText">
-                <h1 class="destUnkText" data-text="Landing...">Landing...</h1>
+          <h1 class="destUnkText" data-text="Landing...">Landing...</h1>
         </section>
-        </div>
-     </div>
+      </div>
+    </div>
 
-     <div class="mt:0 flex flex-col justify-center h-auto pb-2">
-        <div class="self-center items-center flex flex-col sm:flex-row w-full md:w-5/6 xl:w-2/3 px-2">
-          <div class="w-full text-center sm:text-left sm:w-1/2">
-            <img class="mb-16 w-full object-fill mx-auto logocolorchange" src="logo.png" alt="Destination Unknown Logo">
-            <span class="text-green-950 text-xl tracking-wide">Not sure where to go next?</span>
-            <h2 class="text-green-950 mt-10 font-bold tracking-wide text-xl">How about 
-              <span class="content__container block font-tight text-yellow-950 font-display text-4xl my-2">
-                <ul class="content__container__list">
-                  <li class="content__container__list__item xl:pl-3">Athens</li>
-                  <li class="content__container__list__item xl:pl-3">Bali</li>
-                   <li class="content__container__list__item xl:pl-3">Christchurch</li>
-                  <li class="content__container__list__item xl:pl-3">Dubrovnik</li> 
-                  <li class="content__container__list__item xl:pl-3">Ecuador</li>            
-                  <li class="content__container__list__item xl:pl-3">France</li>  
-                  <li class="content__container__list__item text-3xl xl:pl-3">Go anywhere</li>
-                </ul>
-              </span>
-              <p class="text-green-950 tracking-wider text-2xl font-display">Travel the world and the seven seas - Eurythmics</p>
+    <div id="header" class="hidden">
+      <div class="containerHeader">
+        <!-- Text about users location and weather goes here -->
+      </div>
+    </div>
+
+    <!-- Over arching div is hidden until userIP function is finished -->
+    <div id="contentHider" class="hidden">
+      <div class="wrapper">
+        <div class="row">
+          <div class="containerForm column">
+            <form id="frm1" class="userInput" action="/action_page.php">
+              <p class="formText">For best results, enter a city and country</p>
+              Destination:
+              <input
+                type="text"
+                name="Location"
+                id="travelLocation"
+              /><br /><br />
+              Travel month:
+              <input type="text" name="Month" id="travelMonth" /><br /><br />
+              <input
+                id="submitBtn"
+                type="button"
+                onclick="getData()"
+                value="Submit"
+              />
+              <input
+                id="randomBtn"
+                type="button"
+                onclick="getRandom()"
+                value="Random"
+              />
+            </form>
+            <input
+              id="resetBtn"
+              class="hidden"
+              type="button"
+              onclick="window.location.reload()"
+              value="Reset"
+            />
           </div>
-         
-          <div class="w-full lg:self-center flex flex-row flex-no-wrap justify-center items-center">
-                <a class="w-auto self-center flex flex-col flex-row items-center px-10 py-5 text-green-1000 bg-green-950 rounded-lg shadow-md text-lg hover:bg-gray-50 hover:border-red"
-          href="#contentHider">Get started</a>  
+        </div>
+
+        <div id="infoHider" class="infoWrapper row hidden">
+          <div id="idLocation" class="containerLocation column">
+            <h1 class="title">Location Details</h1>
+            <!-- html tags and content is added here directly through the jquery -->
+          </div>
+
+          <div id="idWeather" class="containerWeather column">
+            <h1 class="title">Weather</h1>
+            <h4>Daily averages for season</h4>
+            <!-- html tags and content is added here directly through the jquery -->
+          </div>
+
+          <div id="idInfo" class="containerInfo column hidden">
+            <h1 class="title">Destination Information</h1>
+            <!-- html tags and content is added here directly through the jquery -->
           </div>
         </div>
       </div>
 
-
-
-        <div id="header" class="hidden">
-            <div class="containerHeader">
-            <!-- Text about users location and weather goes here -->
-            </div>
-        </div>
-  
-            
-        <!-- Over arching div is hidden until userIP function is finished -->
-        <div id="contentHider" class="hidden">
-            <div class="wrapper">
-            <div class="row">
-                <div class="containerForm column">
-                    <form id="frm1" class="userInput" action="/action_page.php">
-                        <p class="formText"> For best results, enter a city and country</p>
-                        Destination: <input type="text" name="Location" id="travelLocation"><br><br>
-                        Travel month: <input type="text" name="Month" id="travelMonth"><br><br>
-                        <input id="submitBtn" type="button" onclick="getData()" value="Submit">
-                        <input id="randomBtn" type="button" onclick="getRandom()" value="Random">
-                    </form>
-                    <input id="resetBtn" class="hidden" type="button" onclick="window.location.reload()" value="Reset">
-                </div>
-            </div>
-
-            <div id="infoHider"class="infoWrapper row hidden">
-                <div id="idLocation" class=" containerLocation column">
-                <h1 class="title"> Location Details</h1>
-                <!-- html tags and content is added here directly through the jquery -->
-                </div>
-
-                <div id="idWeather" class=" containerWeather column">
-                <h1 class="title"> Weather </h1>
-                <h4> Daily averages for season</h4>
-                <!-- html tags and content is added here directly through the jquery -->
-                </div>
-
-                <div id="idInfo" class=" containerInfo column hidden">
-                <h1 class="title"> Destination Information</h1>
-                <!-- html tags and content is added here directly through the jquery -->
-                </div>
-            </div>
+      <div class="containerPhotos row">
+        <div class="photoHeading capitilise">
+          <!-- City Name will go here above 10 photos from search results -->
         </div>
 
-        <div class="containerPhotos row">
-            <div class="photoHeading capitilise">
-            <!-- City Name will go here above 10 photos from search results -->
-            </div>
-    
-            <div class="resultPhotos column">
-            <!-- search result Photos will go here -->
-            </div>
+        <div class="resultPhotos column">
+          <!-- search result Photos will go here -->
         </div>
-           
+      </div>
     </div>
-        <script src="script.js"></script>
-
-    </body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
