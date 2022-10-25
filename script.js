@@ -441,6 +441,8 @@ var randomLocations = [
         document.getElementById("submitBtn").classList.add("hidden");
         document.getElementById("resetBtn").classList.remove("hidden");
         document.getElementById("idLocation").classList.remove("hidden");
+        document.getElementById("randomBtn").classList.add("hidden");
+        
   
         // Set search query
         searchQuery = travelLocation + " in " + travelSeason;
@@ -502,68 +504,74 @@ var randomLocations = [
   
     document.getElementById("travelLocation").value = travelLocation;
     document.getElementById("travelMonth").value = travelMonth;
-    
-    var url =
-      "https://api.geoapify.com/v1/geocode/search?text=" +
-      travelLocation +
-      "&limit=1&format=json&apiKey=" +
-      geoKey;
-  
-    $.getJSON(url, function (apiData) {
-      var item = apiData.results[0];
-  
-      //variables to make it easier to target relevant data from the API
-      var storeCity = item.city;
-      var storeCountry = item.country;
-      var storeLat = item.lat;
-      var storeLong = item.lon;
-  
-      // Storing city and country in variables to be used by APIs
-      travelCity = storeCity;
-      travelCountry = storeCountry;
-  
-      // lat and long needs to be 2 decimal places for WeatherAPI
-      travelLat = storeLat.toFixed(2);
-      travelLong = storeLong.toFixed(2);
-  
-      findHemisphere();
-  
-      // Get Content on the page
-  
-      // Creating display variables for the different items
-      var city = $("<h2>").html("City: " + storeCity);
-      var country = $("<h3>").html("Country: " + storeCountry);
-      var long = $("<h4>").html("Longitude: " + travelLong);
-      var lat = $("<h4>").html("Latitude: " + travelLat);
-      var hemi = $("<h4>").html("Hemisphere: " + hemisphere);
-      var month = $('<h4 class="capitilise">').html("Month: " + travelMonth);
-      var season = $("<h4>").html("Season: " + travelSeason);
-  
-      // Appending the display variables to relevant container ID
-      $(".containerLocation").append(
-        city,
-        country,
-        long,
-        lat,
-        hemi,
-        month,
-        season
-      );
-  
-      // Removing submit button and replacing with reset button
-      document.getElementById("submitBtn").classList.add("hidden");
-      document.getElementById("randomBtn").classList.add("hidden");
-      document.getElementById("resetBtn").classList.remove("hidden");
-  
-      // Set search query
-      searchQuery = storeCity + storeCountry + " in " + travelSeason;
-      console.log(searchQuery);
-  
-      // calling function to get weather from OpenWeather API
-      getWeather();
-  
-      // calling function to get Photos from google image search API, filtered to images from www.unsplash.com
-      getPhotos();
-    });
   }
+
+  //not needed anymore
+
+
+    // getData();
+    
+    // var url =
+    //   "https://api.geoapify.com/v1/geocode/search?text=" +
+    //   travelLocation +
+    //   "&limit=1&format=json&apiKey=" +
+    //   geoKey;
+  
+    // $.getJSON(url, function (apiData) {
+    //   var item = apiData.results[0];
+  
+    //   //variables to make it easier to target relevant data from the API
+    //   var storeCity = item.city;
+    //   var storeCountry = item.country;
+    //   var storeLat = item.lat;
+    //   var storeLong = item.lon;
+  
+    //   // Storing city and country in variables to be used by APIs
+    //   travelCity = storeCity;
+    //   travelCountry = storeCountry;
+  
+    //   // lat and long needs to be 2 decimal places for WeatherAPI
+    //   travelLat = storeLat.toFixed(2);
+    //   travelLong = storeLong.toFixed(2);
+  
+    //   findHemisphere();
+  
+    //   // Get Content on the page
+  
+    //   // Creating display variables for the different items
+    //   var city = $("<h2>").html("City: " + storeCity);
+    //   var country = $("<h3>").html("Country: " + storeCountry);
+    //   var long = $("<h4>").html("Longitude: " + travelLong);
+    //   var lat = $("<h4>").html("Latitude: " + travelLat);
+    //   var hemi = $("<h4>").html("Hemisphere: " + hemisphere);
+    //   var month = $('<h4 class="capitilise">').html("Month: " + travelMonth);
+    //   var season = $("<h4>").html("Season: " + travelSeason);
+  
+    //   // Appending the display variables to relevant container ID
+    //   $(".containerLocation").append(
+    //     city,
+    //     country,
+    //     long,
+    //     lat,
+    //     hemi,
+    //     month,
+    //     season
+    //   );
+  
+    //   // Removing submit button and replacing with reset button
+    //   document.getElementById("submitBtn").classList.add("hidden");
+    //   document.getElementById("randomBtn").classList.add("hidden");
+    //   document.getElementById("resetBtn").classList.remove("hidden");
+  
+    //   // Set search query
+    //   searchQuery = storeCity + storeCountry + " in " + travelSeason;
+    //   console.log(searchQuery);
+  
+    //   // calling function to get weather from OpenWeather API
+    //   getWeather();
+  
+    //   // calling function to get Photos from google image search API, filtered to images from www.unsplash.com
+    //   getPhotos();
+    // });
+//   }
   

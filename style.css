@@ -260,6 +260,10 @@ body {
       width: 100%;
     }
   }
+
+  #randomBtn{
+    margin-right: 2vw;
+  }
   
   .containerPhotos {
     padding: 30px;
