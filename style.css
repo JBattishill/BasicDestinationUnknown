@@ -60,6 +60,7 @@ body {
   
   .containerForm input::placeholder{
     color: #cdcdcd;
+    text-align: center;
   }
 
   .formText{
@@ -70,25 +71,20 @@ body {
   .infoWrapper {
     width: 80vw;
     margin: 0 auto;
-    align-self: center;
-    align-items: center;
-    align-content: center;
     justify-content: center;
-    justify-items: center;
-    justify-self: center;
     text-align: center;
   }
 
   .containerLocation {
     max-width:100%;
     width: 38vw;
+    word-break: break-all;
     height: auto;
     padding: 1vh 2vw;
-    background-color: rgb(255, 255, 255);
-    color: black;
+    background-color: rgba(255, 245, 228, 0.655);
+    color: rgb(60, 60, 60);
     margin: 1vh 1vw;
     text-align: center;
-    word-break: break-all;
     line-height: 200%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -102,8 +98,8 @@ body {
     word-break: break-all;
     height: auto;
     padding: 1vh 2vw;
-    background-color: rgb(255, 255, 255);
-    color: black;
+    background-color: rgba(255, 245, 228, 0.655);
+    color: rgb(60, 60, 60);
     margin: 1vh 1vw;
     text-align: center;
     line-height: 200%;
@@ -129,23 +125,23 @@ body {
     font-weight: 600;
   }
   h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+  
+  h3 {
     font-size: 2rem;
     font-weight: 400;
   }
   
-  h3 {
+  h4 {
     font-size: 1.5rem;
     font-weight: 300;
   }
   
-  h4 {
+  p {
     font-size: 1.25rem;
     font-weight: 200;
-  }
-  
-  p {
-    font-size: 1rem;
-    font-weight: 100;
   }
   
   .title
@@ -157,14 +153,7 @@ body {
   .topSpace {
     margin-top: 1vh;
   }
-  
-  
-  #loadingContent {
-    height: 100vh;
-    width: 100vw;
-    margin-top: 10vh;
-  }
-  
+    
   #loadingImage {
     height: 40vh;
     width: 80vw;
@@ -259,7 +248,7 @@ body {
   }
 
   .containerRandom{
-    margin: 5vh auto;
+    margin: 2vh auto;
     width: 30vw;
     justify-content: center;
   }
@@ -325,8 +314,75 @@ body {
     width: auto;
   }
 
-  /* On screens that are 992px or less, set the background color to blue */
+   
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  }
+  
+  .hidden {
+  display: none;
+  }
+  
+  .capitilise {
+  text-transform: capitalize;
+  }
+  
+  /* Seasonal Background gradients */
+  .winter {
+  background: linear-gradient(to right, #5cddc3, #37529c);
+  background-size: 600% 600%;
+  animation: gradient 7s ease infinite;
+  height: 100vh;
+  }
+  
+  .summer {
+  background-image: linear-gradient(
+      270.2deg,
+      rgb(230, 191, 0) 10.4%,
+      rgb(192, 67, 0) 43.8%,
+      rgba(0, 93, 219, 1) 105.8%
+  );
+  background-size: 400% 400%;
+  animation: gradient 7s ease infinite;
+  height: 100vh;
+  }
+  
+  .spring {
+  background: linear-gradient(to right, #5cddc3, #409c37);
+  background-size: 400% 400%;
+  animation: gradient 7s ease infinite;
+  height: 100vh;
+  }
+  
+  .autumn {
+  background: linear-gradient(to right, #f3904f, #3b4371);
+  background-size: 400% 400%;
+  animation: gradient 7s ease infinite;
+  height: 100vh;
+  }
+  
+  @keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+  }
+  
+
+  /* Settings for screens that are 1040px or less */
 @media screen and (max-width: 1040px) {
+
+  p{
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
 
     /* Loading Logo - Spinning one */
     .logo{
@@ -339,6 +395,10 @@ body {
         margin: 2rem auto;
       }
 
+/* Where user location and weather details go */
+      .containerHeader {
+        width: 90vw;
+      }
 
       /* User input form */
 
@@ -379,13 +439,10 @@ body {
     border-radius: none;
   }
   #header{
+    margin: 0 auto;
     margin-top: 5vh;
-    align-self: center;
-    align-items: center;
-    align-content: center;
+    min-height: 20vh;
     justify-content: center;
-    justify-items: center;
-    justify-self: center;
     text-align: center;
   }
   .headerLogo{
@@ -395,63 +452,4 @@ body {
     margin: 2.5vh auto;
     position: inherit;   
   }
-}
-  
-
-.row {
-display: flex;
-flex-wrap: wrap;
-}
-
-.hidden {
-display: none;
-}
-
-.capitilise {
-text-transform: capitalize;
-}
-
-.winter {
-background: linear-gradient(to right, #5cddc3, #37529c);
-background-size: 600% 600%;
-animation: gradient 7s ease infinite;
-height: 100vh;
-}
-
-.summer {
-background-image: linear-gradient(
-    270.2deg,
-    rgb(230, 191, 0) 10.4%,
-    rgb(192, 67, 0) 43.8%,
-    rgba(0, 93, 219, 1) 105.8%
-);
-background-size: 400% 400%;
-animation: gradient 7s ease infinite;
-height: 100vh;
-}
-
-.spring {
-background: linear-gradient(to right, #5cddc3, #409c37);
-background-size: 400% 400%;
-animation: gradient 7s ease infinite;
-height: 100vh;
-}
-
-.autumn {
-background: linear-gradient(to right, #f3904f, #3b4371);
-background-size: 400% 400%;
-animation: gradient 7s ease infinite;
-height: 100vh;
-}
-
-@keyframes gradient {
-0% {
-    background-position: 0% 50%;
-}
-50% {
-    background-position: 100% 50%;
-}
-100% {
-    background-position: 0% 50%;
-}
 }

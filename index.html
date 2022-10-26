@@ -1,5 +1,5 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
     <title>Destination Unknown</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
@@ -61,9 +61,9 @@
         <div class="eventEnter wrapper">
             <div class="row">
                 <div id="formHider" class="containerForm">
-                    <form id="frm1" class="userInput" action="/action_page.php">
-                    <p class="formText">Not sure when or where? <br> 
-                    Use our random button for some inspiration!</p>
+                    <form id="frm1" class="userInput">
+                    <p class="formText">Not sure when or where?</p> 
+                    <p class="formText">Use our random button for some inspiration!</p>
                     
                     Destination:
                     <input
@@ -79,7 +79,7 @@
                     id="travelMonth"
                     placeholder="July"
                     /><br /><br />
-                    <a id="submitBtn" class="button" onclick="getData()">Submit</a>
+                    <a id="submitBtn" class="button" type="submit" onclick="getData()">Submit</a>
                   </form>
                 </div>
             </div>
