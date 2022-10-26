@@ -42,9 +42,9 @@
         /> -->
       </div>
       <div id="loadTextWrapper">
-        <h1>Destination Unknown</h1>
+        <h1 class ="loadingDestUnk">Destination Unknown</h1>
         <section class="loadingText">
-          <h1 class="destUnkText" data-text="Landing...">Landing...</h1>
+          <h1 class="landingText" data-text="Landing...">Landing...</h1>
         </section>
       </div>
     </div>
@@ -62,15 +62,23 @@
             <div class="row">
                 <div id="formHider" class="containerForm">
                     <form id="frm1" class="userInput" action="/action_page.php">
-                    <p class="formText">For best results, enter a city and country</p>
+                    <p class="formText">Not sure when or where? <br> 
+                    Use our random button for some inspiration!</p>
+                    
                     Destination:
                     <input
                         type="text"
                         name="Location"
                         id="travelLocation"
+                        placeholder="Hydra Greece"
                     /><br /><br />
                     Travel month:
-                    <input type="text" name="Month" id="travelMonth" /><br /><br />
+                    <input 
+                    type="text" 
+                    name="Month" 
+                    id="travelMonth"
+                    placeholder="July"
+                    /><br /><br />
                     <a id="submitBtn" class="button" onclick="getData()">Submit</a>
                   </form>
                 </div>

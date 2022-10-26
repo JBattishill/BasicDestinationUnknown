@@ -95,7 +95,7 @@ var randomLocations = [
   function delayLoad() {
     setTimeout(() => {
       userIP();
-    }, 1000);
+    }, 1500);
   }
 
 //Function that watches the with the form and random button listening for the enter key - this is required because my form doesnt actually submit, it call the getData function.
