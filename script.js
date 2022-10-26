@@ -19,18 +19,18 @@ var randomLocations = [
 ];
 // Random Month Array
 var month = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june",
+  "july",
+  "august",
+  "september",
+  "october",
+  "november",
+  "december",
 ];
 
 // Weather Variables
@@ -162,33 +162,33 @@ function userIP()
   });
 }
 
-// function monthcheck(){
-
-  
-  //   // go on with the function
-  // }
-
-
 // Main function that gets GeoLocation information from GeoAPIfy and populates the locationContainer, it also calls the  weather and photo functions.
 // This is triggered when the user presses submit button or enter while targeting the form.
 function getData() {
   $(document).ready(function () {
-
+    
+  // Code to check the month is a valid spelling, throws error via alert if not.
+    // Side note - I had 4 seperate error alerts caused by a mispelt month before this.
+      // This also stops the getData function before the webpage needs to be reset so the user can just fix the error and try again.
+   
+    //getting travel month from form
     travelMonth = document.getElementById("travelMonth").value;
+    //Convert to lowercase to check match format of the array "month"
+    var testMonth = travelMonth.toLowerCase()
 
-    if (!month.includes(travelMonth)) {
+    // checks if the entry, now lowercase, matchs any of the months in the array of months, if it does NOT match, it throws an alert up with an error message and stops the function, else it continues.
+    // The exclamation mark - ! means NOT - I know you know this, I just want to make sure you know I know this... I may have had an energy drink before writing this...)
+    // 
+    if (!month.includes(testMonth)) {
       alert("An error has occured. Please check the month you entered and try again.");
       return
     }
-
-         // Importing month from user input
-      // travelMonth = document.getElementById("travelMonth").value;
 
       //Calling function to find hemisphere of travel location
       findHemisphere();
 
 
-    // Setting variable travelLocation to the form input for travelLocation
+    // Pulls the travelLocation input from the for and sets it to the variable travelLocation
     travelLocation = document.getElementById("travelLocation").value;
 
     //Setting up of URL for geolocation of travelLocation, uses variables for travel location and the relevant API key needed.
@@ -318,11 +318,10 @@ function getPhotos() {
 
     //Creating a heading for above photos that explains what they are showing. Essentially showing what the search query was.
     var photoCity = $('<h2>').html(
-      "What " +
         travelCity +
         ", " +
         travelCountry +
-        " can look like in " +
+        " can look like this in " +
         travelSeason
     );
     //Appends heading to the photoHeading div
