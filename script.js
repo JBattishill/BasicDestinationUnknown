@@ -91,9 +91,14 @@ var searchQuery = "";
 var travelSeason = "";
 
 //Restricts input of form to letters only by comparing input to letters a-z and removing if it not valid.
-function lettersOnly(){
+function locationLettersOnly(){
   var regex = /[^a-z]/gi;
   document.getElementById("travelLocation").value = document.getElementById("travelLocation").value.replace(regex, "");
+}
+
+function monthLettersOnly(){
+  var regex = /[^a-z]/gi;
+  document.getElementById("travelMonth").value = document.getElementById("travelLocation").value.replace(regex, "");
 }
 
 //Watches the form and listens for the enter key being pressed down - this is required because the form doesnt actually allow the submit button to submit.
