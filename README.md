@@ -1,9 +1,9 @@
 # Destination Unknown
 **u3092157 - Jarryd Battishill**
 
-### Reflection
+## [Destination Unknown - Glitch Link](https://destinationunknown.glitch.me)
 
-## [Destination Unknown - Glitch Link](https://destinationunknown.glitch.me).
+### Reflection
 
 I chose to a web App for travellers looking for a travel location or month or people who just want to get excited about somewhere they are already heading.
 
