@@ -160,7 +160,7 @@ function userIP()
           roundedTemp +
           " &#8451"
       );
-      var showIPTemp = $('<p class="topSpace">').html(
+      var showIPTemp = $('<h4 class="topSpace">').html(
         "Time to head somewhere exciting?"
       );
 
@@ -348,10 +348,11 @@ function getPhotos() {
 
     //Creating a heading for above photos that explains what they are showing. Essentially showing what the search query was.
     var photoCity = $('<h2>').html(
-        travelCity +
+      "What " +  
+      travelCity +
         ", " +
         travelCountry +
-        " can look like this in " +
+        " can look like in " +
         travelSeason
     );
     //Appends heading to the photoHeading div
@@ -363,8 +364,8 @@ function getPhotos() {
     // Hides the form as the page isnt built for multiple requests. 
     document.getElementById("formHider").classList.add("hidden");
  
-    // Hides the random button it sits outside the formHider wrapper.
-    document.getElementById("randomBtn").classList.add("hidden");
+    // Hides the random buttong and text it sits outside the formHider wrapper.
+    document.getElementById("hideRandom").classList.add("hidden");
    
     // Unhides a button to reset the page.
     document.getElementById("resetBtn").classList.remove("hidden");

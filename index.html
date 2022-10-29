@@ -32,6 +32,11 @@
     </div>
 
     <div id="header" class="hidden">
+      <img
+        class="smallScreenLogo"
+        src="logoTextWhite.png"
+        alt="Destination Unknown Logo"
+      />
       <img class="headerLogo" src="logo.png" alt="Destination Unknown Logo" />
       <div class="containerHeader">
         <!-- Text about users location and weather goes here -->
@@ -44,11 +49,7 @@
         <div class="row">
           <div id="formHider" class="containerForm">
             <form id="frm1" class="userInput">
-              <p class="formText">Not sure when or where?</p>
-              <p class="formText">
-                Use our random button for some inspiration!
-              </p>
-
+              <p class="formText">Enter a desintation and travel month</p>
               Destination:
               <input
                 type="text"
@@ -66,46 +67,56 @@
                 placeholder="July"
                 onkeyup="monthLettersOnly()"
               /><br /><br />
-              <a id="submitBtn" class="button" type="submit" onclick="errorChecker()"
+              <a
+                id="submitBtn"
+                class="button"
+                type="submit"
+                onclick="errorChecker()"
                 >Submit</a
               >
             </form>
           </div>
         </div>
-        <div class="containerRandom row">
-          <a
-            id="resetBtn"
-            class="hidden button"
-            onclick="window.location.reload()"
-            >Reset</a
-          >
-          <a id="randomBtn" class="button" onclick="getRandom()">Random</a>
-        </div>
-
-        <div id="infoHider" class="infoWrapper row hidden">
-          <div id="idLocation" class="containerLocation column">
-            <h3 class="title">Location</h3>
-            <!-- Location data from GeoLocation API goes here via getData()-->
-          </div>
-
-          <div id="idWeather" class="containerWeather column">
-            <h3 class="title">Average weather</h3>
-            <!-- Weather data from Weather API goes here via getWeather()-->
-          </div>
-        </div>
+      </div>
+      <div class="containerReset">
+        <a
+          id="resetBtn"
+          class="hidden button"
+          onclick="window.location.reload()"
+          >Reset</a
+        >
       </div>
 
-      <!-- Photos from Google Search API goes here via getPhotos()-->
-      <div class="containerPhotos row">
-        <div class="photoHeading">
-          <!-- Travel location and the season will go here above the 9 photos from search results -->
+      <div id="hideRandom">
+        <p class="randomText">Not sure when or where?</p>
+        <p class="randomText">Use our random button for some inspiration!</p>
+        <a id="randomBtn" class="button" onclick="getRandom()">Random</a>
+      </div>
+
+      <div id="infoHider" class="infoWrapper row hidden">
+        <div id="idLocation" class="containerLocation column">
+          <h3 class="title">Location</h3>
+          <!-- Location data from GeoLocation API goes here via getData()-->
         </div>
 
-        <div class="resultPhotos column">
-          <!-- search result Photos will go here -->
+        <div id="idWeather" class="containerWeather column">
+          <h3 class="title">Average weather</h3>
+          <!-- Weather data from Weather API goes here via getWeather()-->
         </div>
       </div>
     </div>
+
+    <!-- Photos from Google Search API goes here via getPhotos()-->
+    <div class="containerPhotos row">
+      <div class="photoHeading">
+        <!-- Travel location and the season will go here above the 9 photos from search results -->
+      </div>
+
+      <div class="resultPhotos column">
+        <!-- search result Photos will go here -->
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

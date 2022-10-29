@@ -9,8 +9,8 @@ body {
   }
 
   #header {
-    margin: 7.5vh auto;
-    min-height: 30vh;
+    margin: 2rem auto;
+    height: auto;
     width: 100vw;
   }
 
@@ -169,8 +169,11 @@ body {
     height: 20vh;
     width: auto;
     rotate: y 45deg;
-	animation: loadingAnimation 3s linear forwards;
+	  animation: loadingAnimation 3s linear forwards;
   }  
+  .smallScreenLogo{
+    display:none;
+  }
 
 
   @keyframes loadingAnimation {
@@ -247,10 +250,23 @@ body {
     }
   }
 
-  .containerRandom{
-    margin: 2vh auto;
-    width: 30vw;
+
+  .containerReset{
+    margin: 5rem auto;
     justify-content: center;
+    text-align: center;
+
+  }
+  
+  #hideRandom{
+    margin: 3rem auto auto auto;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    text-align: center;
+  }
+  .randomText{
+    line-height: 200%;
   }
 
   .button{
@@ -261,7 +277,6 @@ body {
         display:inline-block;
         cursor:pointer;
         color:#ffffff;
-        font-size: 1rem;
         font-weight: 400;
         padding:13px 32px;
         text-decoration:none;
@@ -374,8 +389,8 @@ body {
   }
   
 
-  /* Settings for screens that are 1040px or less */
-@media screen and (max-width: 1040px) {
+/* Settings for screens that are 1180px (iPad in landscape) or less */
+@media screen and (max-width: 1180px) {
 
   p{
     font-size: 1.25rem;
@@ -396,15 +411,24 @@ body {
 /* Where user location and weather details go */
       .containerHeader {
         width: 90vw;
+        line-height: 350% ;
+      }
+      .containerHeader h3 {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+      .containerHeader h4{
+        font-size: 1.6rem;
+        font-weight: 200;
       }
 
       /* User input form */
 
     .containerForm {
-        font-size: 2rem;
-        width: fit-content;
-        padding: 1rem;
-      }
+      font-size: 2rem;
+      width: fit-content;
+      padding: 1rem;
+    }
 
       .containerForm input{
         font-size: 2rem;
@@ -437,17 +461,16 @@ body {
     border-radius: none;
   }
   #header{
-    margin: 0 auto;
-    margin-top: 5vh;
-    min-height: 20vh;
-    justify-content: center;
-    text-align: center;
+    margin: 2rem auto;
   }
   .headerLogo{
-    filter: brightness(0) invert(1);
-    width: 15vw;
+    display: none;   
+  }
+  .smallScreenLogo{
+    display:inherit;
+    width: auto;
     height: auto;
-    margin: 2.5vh auto;
-    position: inherit;   
+    margin: 1rem auto;
+    position: inherit; 
   }
 }
