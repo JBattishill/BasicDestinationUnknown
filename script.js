@@ -1,21 +1,21 @@
 // Random Location Array
 var randomLocations = [
-  "Ubud, Indonesia",
-  "New Orleans, USA",
-  "Marrakesh, Morocco",
-  "Paris, France",
-  "Cape Town, South Africa",
-  "Dubrovnik, Croatia",
-  "Tokyo, Japan",
-  "Vancouver, Canada",
-  "Los Angeles, USA",
-  "Vernazza, Italy",
-  "Buenos Aires, Argentina",
-  "London, England",
-  "Jaipur, India",
-  "Havana, Cuba",
-  "Christchurch, New Zealand",
-  "Hydra, Greece",
+  "Ubud Indonesia",
+  "New Orleans USA",
+  "Marrakesh Morocco",
+  "Paris France",
+  "Cape Town South Africa",
+  "Dubrovnik Croatia",
+  "Tokyo Japan",
+  "Vancouver Canada",
+  "Los Angeles USA",
+  "Vernazza Italy",
+  "Buenos Aires Argentina",
+  "London England",
+  "Jaipur India",
+  "Havana Cuba",
+  "Christchurch New Zealand",
+  "Hydra Greece",
 ];
 // Random Month Array
 var month = [
@@ -90,6 +90,12 @@ var imageSearchID = "474f1fff433d047cf";
 var searchQuery = "";
 var travelSeason = "";
 
+//Restricts input of form to letters only by comparing input to letters a-z and removing if it not valid.
+function lettersOnly(){
+  var regex = /[^a-z]/gi;
+  document.getElementById("travelLocation").value = document.getElementById("travelLocation").value.replace(regex, "");
+}
+
 //Watches the form and listens for the enter key being pressed down - this is required because the form doesnt actually allow the submit button to submit.
 // I assume I call the getData function weirdly, I put a little effort into fixing it but it didnt get far.
 $('.eventEnter').keydown(function(event) {
@@ -162,12 +168,23 @@ function userIP()
   });
 }
 
-// Main function that gets GeoLocation information from GeoAPIfy and populates the locationContainer, it also calls the  weather and photo functions.
-// This is triggered when the user presses submit button or enter while targeting the form.
-function getData() {
-  $(document).ready(function () {
-    
-  // Code to check the month is a valid spelling, throws error via alert if not.
+// Checks input fields to see if there are errors before starting calls
+  // First check if Destination or Month are empty
+  // Then checks for spelling mistake in month
+function errorChecker(){
+
+  // Checks the input value of the form's travelLocation compares to empty string, alert if it matches.
+  if (document.getElementById("travelLocation").value === "") {
+      alert("Please enter a destination");
+      return
+    }
+// Checks the input value of the form's travelMonth, compares to empty string, alert if it matches.
+    if (document.getElementById("travelMonth").value === "") {
+      alert("Please enter a travel month");
+      return
+    }
+
+ // Code to check the month is a valid spelling, throws error via alert if not.
     // Side note - I had 4 seperate error alerts caused by a mispelt month before this.
       // This also stops the getData function before the webpage needs to be reset so the user can just fix the error and try again.
    
@@ -179,11 +196,19 @@ function getData() {
     // checks if the entry, now lowercase, matchs any of the months in the array of months, if it does NOT match, it throws an alert up with an error message and stops the function, else it continues.
     // The exclamation mark - ! means NOT - I know you know this, I just want to make sure you know I know this... I may have had an energy drink before writing this...)
     // 
+
     if (!month.includes(testMonth)) {
       alert("An error has occured. Please check the month you entered and try again.");
       return
     }
+    getData();
+}
 
+// Main function that gets GeoLocation information from GeoAPIfy and populates the locationContainer, it also calls the  weather and photo functions.
+// This is triggered when the user presses submit button or enter while targeting the form.
+function getData() {
+  $(document).ready(function () {
+    
       //Calling function to find hemisphere of travel location
       findHemisphere();
 

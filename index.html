@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
     <title>Destination Unknown</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
@@ -14,43 +15,24 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/favicon.ico?v=1666652556128"
-    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body onload="delayLoad()" id="body">
     <div id="loadingContent" class="centerText">
       <!-- Loading gif until userIP function is finished -->
       <div id="loadingImage">
-        <img
-        class="logo"
-        src="logo.png"
-        alt="logo"
-      />
-<!--       
-        <img
-          class="logoBG"
-          src="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/PlanelessLogo.svg?v=1666652545168"
-          alt="logo"
-        />
-        <img
-          class="loadingLogo"
-          src="https://cdn.glitch.global/c24b532d-8e00-4c75-999a-c8354f109976/PlaneLogo.svg?v=1666652550751"
-          alt="logo"
-        /> -->
+        <img class="logo" src="logo.png" alt="logo" />
       </div>
       <div id="loadTextWrapper">
-        <h1 class ="loadingDestUnk">Destination Unknown</h1>
+        <h1 class="loadingDestUnk">Destination Unknown</h1>
         <section class="loadingText">
           <h1 class="landingText" data-text="Landing...">Landing...</h1>
         </section>
       </div>
     </div>
 
-    <div id="header" class="hidden ">
-    <img class="headerLogo" src="logo.png" alt="Destination Unknown Logo">
+    <div id="header" class="hidden">
+      <img class="headerLogo" src="logo.png" alt="Destination Unknown Logo" />
       <div class="containerHeader">
         <!-- Text about users location and weather goes here -->
       </div>
@@ -58,54 +40,65 @@
 
     <!-- Over arching div is hidden until userIP function is finished -->
     <div id="contentHider" class="hidden column">
-        <div class="eventEnter wrapper">
-            <div class="row">
-                <div id="formHider" class="containerForm">
-                    <form id="frm1" class="userInput">
-                    <p class="formText">Not sure when or where?</p> 
-                    <p class="formText">Use our random button for some inspiration!</p>
-                    
-                    Destination:
-                    <input
-                        type="text"
-                        name="Location"
-                        id="travelLocation"
-                        placeholder="Hydra Greece"
-                    /><br /><br />
-                    Travel month:
-                    <input 
-                    class="capitilise"
-                    type="text" 
-                    name="Month" 
-                    id="travelMonth"
-                    placeholder="July"
-                    /><br /><br />
-                    <a id="submitBtn" class="button" type="submit" onclick="getData()">Submit</a>
-                  </form>
-                </div>
-            </div>
-            <div class="containerRandom row">
-                <a id="resetBtn" class="hidden button" onclick="window.location.reload()">Reset</a>
-                <a id="randomBtn" class="button" onclick="getRandom()">Random</a>
-            </div>
+      <div class="eventEnter wrapper">
+        <div class="row">
+          <div id="formHider" class="containerForm">
+            <form id="frm1" class="userInput">
+              <p class="formText">Not sure when or where?</p>
+              <p class="formText">
+                Use our random button for some inspiration!
+              </p>
 
-            <div id="infoHider" class="infoWrapper row hidden">
-                <div id="idLocation" class="containerLocation column">
-                    <h3 class="title">Location</h3>
-                    <!-- html tags and content is added here directly through the JS Functions -->
-                </div>
+              Destination:
+              <input
+                type="text"
+                name="Location"
+                id="travelLocation"
+                placeholder="Hydra Greece"
+                onkeyup="lettersOnly()"
+              /><br /><br />
+              Travel month:
+              <input
+                class="capitilise"
+                type="text"
+                name="Month"
+                id="travelMonth"
+                placeholder="July"
+                onkeyup="lettersOnly()"
+              /><br /><br />
+              <a id="submitBtn" class="button" type="submit" onclick="errorChecker()"
+                >Submit</a
+              >
+            </form>
+          </div>
+        </div>
+        <div class="containerRandom row">
+          <a
+            id="resetBtn"
+            class="hidden button"
+            onclick="window.location.reload()"
+            >Reset</a
+          >
+          <a id="randomBtn" class="button" onclick="getRandom()">Random</a>
+        </div>
 
-                <div id="idWeather" class="containerWeather column">
-                    <h3 class="title">Average weather </h3>
-                    <!-- html tags and content is added here directly through the JS Functions -->
-                </div>
-            </div>
-            
+        <div id="infoHider" class="infoWrapper row hidden">
+          <div id="idLocation" class="containerLocation column">
+            <h3 class="title">Location</h3>
+            <!-- Location data from GeoLocation API goes here via getData()-->
+          </div>
+
+          <div id="idWeather" class="containerWeather column">
+            <h3 class="title">Average weather</h3>
+            <!-- Weather data from Weather API goes here via getWeather()-->
+          </div>
+        </div>
       </div>
 
+      <!-- Photos from Google Search API goes here via getPhotos()-->
       <div class="containerPhotos row">
         <div class="photoHeading">
-          <!-- Travel location and will go here above the 9 photos from search results -->
+          <!-- Travel location and the season will go here above the 9 photos from search results -->
         </div>
 
         <div class="resultPhotos column">
