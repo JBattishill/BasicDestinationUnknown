@@ -98,7 +98,7 @@ function locationLettersOnly(){
 
 function monthLettersOnly(){
   var regex = /[^a-z]/gi;
-  document.getElementById("travelMonth").value = document.getElementById("travelLocation").value.replace(regex, "");
+  document.getElementById("travelMonth").value = document.getElementById("travelMonth").value.replace(regex, "");
 }
 
 //Watches the form and listens for the enter key being pressed down - this is required because the form doesnt actually allow the submit button to submit.
